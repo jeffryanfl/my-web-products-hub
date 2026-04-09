@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Makes the site look correct on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Web Products Hub</title>
+
+  <!-- Link to your external stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       TOP NAVIGATION BAR
+       - Logo on the left, nav links on the right
+       - The "hamburger" button appears on mobile (handled in JS)
+  ============================================================ -->
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#hero" class="nav-logo">My Hub</a>
+
+      <!-- Hamburger button — only visible on small screens -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Nav links — collapse into a dropdown on mobile -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       The big welcome banner at the top of the page.
+  ============================================================ -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <h1>Hello, I'm <span class="highlight">Your Name Here</span></h1>
+      <p class="tagline">My Web Learning Projects – April 2026</p>
+      <a href="#projects" class="btn btn-primary">Browse My Projects</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2 — ABOUT ME
+       A short paragraph about who you are and why you're building this.
+  ============================================================ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <h2 class="section-title">About Me & Why I'm Building This</h2>
+      <div class="about-content">
+        <p>
+          Hi! I'm learning web development from scratch. This site is my personal
+          learning lab — a place to collect, showcase, and grow all the projects
+          I build along the way.
+        </p>
+        <p>
+          I started with zero coding experience. My goal is to understand how
+          the web really works: HTML for structure, CSS for style, and JavaScript
+          for interactivity. Every project here represents a new skill unlocked.
+        </p>
+        <!-- REPLACE the text above with your own story when you're ready! -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 — PROJECTS GRID
+       Four placeholder cards. Add more by copying a <div class="project-card">
+       block and updating the text inside it.
+  ============================================================ -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <p class="section-subtitle">Click a card to learn more (coming soon!)</p>
+
+      <div class="projects-grid">
+
+        <!-- Project Card 1 -->
+        <div class="project-card">
+          <div class="card-icon">🛠️</div>
+          <h3>Project 1</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">HTML / CSS</span>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card">
+          <div class="card-icon">🌐</div>
+          <h3>Project 2</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">JavaScript</span>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card">
+          <div class="card-icon">📊</div>
+          <h3>Project 3</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">Charts</span>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="project-card">
+          <div class="card-icon">📝</div>
+          <h3>Project 4</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">Forms</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4 — INTERACTIVE FEATURES PREVIEW
+       Placeholder area for future widgets, charts, and mini-apps.
+  ============================================================ -->
+  <section id="features" class="section features-section">
+    <div class="container">
+      <h2 class="section-title">Interactive Features Preview</h2>
+      <div class="features-placeholder">
+        <p class="features-label">🔬 Coming Soon</p>
+        <p>Future charts, forms, and mini-apps will appear here.</p>
+        <p class="features-note">
+          This space is reserved for interactive JavaScript experiments —
+          live calculators, data visualizations, and more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 — CONTACT
+       A simple call-to-action with a mailto link.
+  ============================================================ -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p>Have a question or want to follow my learning journey? Reach out!</p>
+
+      <div class="contact-links">
+        <!-- REPLACE the href with your real email address -->
+        <a href="mailto:you@example.com" class="btn btn-primary">📧 Email Me</a>
+        <!-- REPLACE # with your actual GitHub/LinkedIn URL when ready -->
+        <a href="#" class="btn btn-secondary">GitHub</a>
+        <a href="#" class="btn btn-secondary">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <p>Built by <strong>Your Name Here</strong> · April 2026 · Learning in Public</p>
+  </footer>
+
+
+  <!-- Link to your JavaScript file — placed at the BOTTOM of body
+       so all the HTML loads before the script tries to find elements -->
+  <script src="script.js"></script>
+
+</body>
+</html>
