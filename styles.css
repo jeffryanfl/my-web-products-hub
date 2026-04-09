@@ -13,7 +13,8 @@
    9. Features Section
    10. Contact Section
    11. Footer
-   12. Responsive / Mobile Breakpoints
+   12. Modal
+   13. Responsive / Mobile Breakpoints
 ============================================================ */
 
 
@@ -21,14 +22,14 @@
    1. CSS VARIABLES
 ============================================================ */
 :root {
-  --color-bg:        #1a2533;   /* dark blue-gray background */
-  --color-navy:      #1e3a5f;   /* kept as-is */
-  --color-green:     #5a9e50;   /* brightened green for dark bg */
-  --color-white:     #e8ecf1;   /* off-white for body text */
-  --color-light:     #243347;   /* card/section alt background */
-  --color-text:      #cdd5e0;   /* light gray body copy */
-  --color-muted:     #8a95a5;   /* muted text */
-  --color-border:    #2e4562;   /* subtle border */
+  --color-bg:        #1a2533;
+  --color-navy:      #1e3a5f;
+  --color-green:     #5a9e50;
+  --color-white:     #e8ecf1;
+  --color-light:     #243347;
+  --color-text:      #cdd5e0;
+  --color-muted:     #8a95a5;
+  --color-border:    #2e4562;
 
   --font-main:       'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --max-width:       1100px;
@@ -406,7 +407,190 @@ p {
 
 
 /* ============================================================
-   12. RESPONSIVE / MOBILE BREAKPOINTS
+   12. MODAL — ROCKVILLE '26
+============================================================ */
+
+/* Dark overlay behind modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 200;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  overflow-y: auto;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* The modal box itself */
+.modal {
+  background-color: #141d2a;
+  border: 1px solid #2e4562;
+  border-radius: 14px;
+  max-width: 720px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  color: #8a95a5;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color var(--transition);
+}
+
+.modal-close:hover {
+  color: #ff4444;
+}
+
+/* Modal title */
+.modal-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #e8ecf1;
+  margin-bottom: 0.25rem;
+}
+
+.modal-subtitle {
+  text-align: center;
+  color: #8a95a5;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* Section headings inside modal */
+.modal-section-heading {
+  color: #c0392b;
+  font-size: 1.15rem;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #2e4562;
+}
+
+/* ---- Countdown ---- */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.countdown-unit {
+  text-align: center;
+  background-color: #1e3a5f;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  min-width: 80px;
+}
+
+.countdown-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff4444;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #8a95a5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
+}
+
+/* ---- Set Times ---- */
+.set-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+.set-day {
+  background-color: #1a2533;
+  border: 1px solid #2e4562;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.set-day h4 {
+  color: #ff4444;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.set-day ul {
+  list-style: none;
+}
+
+.set-day li {
+  font-size: 0.85rem;
+  color: #cdd5e0;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.set-day li:last-child {
+  border-bottom: none;
+}
+
+.band-time {
+  color: #8a95a5;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+/* ---- Gallery ---- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-placeholder {
+  background-color: #1a2533;
+  border: 1px solid #2e4562;
+  border-radius: 8px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.gallery-caption {
+  font-size: 0.8rem;
+  color: #8a95a5;
+  margin-top: 0.5rem;
+}
+
+
+/* ============================================================
+   13. RESPONSIVE / MOBILE BREAKPOINTS
 ============================================================ */
 @media (max-width: 768px) {
 
@@ -440,4 +624,29 @@ p {
     grid-template-columns: 1fr;
   }
 
+  /* Modal responsive */
+  .modal {
+    padding: 2rem 1.25rem;
+  }
+
+  .countdown {
+    gap: 0.75rem;
+  }
+
+  .countdown-unit {
+    min-width: 60px;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+
+  .set-times {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
 }

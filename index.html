@@ -58,7 +58,8 @@
 
       <div class="projects-grid">
 
-        <div class="project-card">
+        <!-- Rockville card — opens modal -->
+        <div class="project-card" id="rockvilleCard">
           <div class="card-icon">🤘🔥</div>
           <h3>Rockville '26</h3>
           <p>A short description of what this project does will go here.</p>
@@ -90,6 +91,104 @@
     </div>
   </section>
 
+
+  <!-- ============================================================
+       ROCKVILLE '26 MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="rockvilleModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+
+      <!-- Title -->
+      <h2 class="modal-title">🤘 Rockville '26 🔥</h2>
+      <p class="modal-subtitle">May 7 – 10, 2026 · Daytona International Speedway</p>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdDays">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdHours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdMins">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdSecs">--</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+
+      <!-- Bands & Set Times -->
+      <h3 class="modal-section-heading">Bands &amp; Headliners by Day</h3>
+      <div class="set-times">
+        <div class="set-day">
+          <h4>Thursday 05/07</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Guns N' Roses</li>
+            <li><span class="band-time">5:15 PM</span> Five Finger Death Punch</li>
+            <li><span class="band-time">3:45 PM</span> Godsmack</li>
+            <li><span class="band-time">2:15 PM</span> Staind</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Friday 05/08</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Foo Fighters</li>
+            <li><span class="band-time">5:15 PM</span> TURNSTILE</li>
+            <li><span class="band-time">3:45 PM</span> The Offspring</li>
+            <li><span class="band-time">2:15 PM</span> Parkway Drive</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Saturday 05/09</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Bring Me The Horizon</li>
+            <li><span class="band-time">5:15 PM</span> Breaking Benjamin</li>
+            <li><span class="band-time">3:45 PM</span> Motionless In White</li>
+            <li><span class="band-time">2:15 PM</span> Lamb of God</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Sunday 05/10</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> My Chemical Romance</li>
+            <li><span class="band-time">5:15 PM</span> A Day To Remember</li>
+            <li><span class="band-time">3:45 PM</span> Rise Against</li>
+            <li><span class="band-time">2:15 PM</span> Yellowcard</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Photo Gallery -->
+      <h3 class="modal-section-heading">Gallery</h3>
+      <div class="gallery">
+        <div class="gallery-item">
+          <div class="gallery-placeholder">🎸</div>
+          <p class="gallery-caption">Main Stage</p>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">🏁</div>
+          <p class="gallery-caption">Daytona Speedway</p>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">🔥</div>
+          <p class="gallery-caption">Pyro Show</p>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">🤘</div>
+          <p class="gallery-caption">The Crowd</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
   <section id="features" class="section features-section">
     <div class="container">
       <h2 class="section-title">Interactive Features Preview</h2>
@@ -108,7 +207,6 @@
     <div class="container">
       <h2 class="section-title">Get in Touch</h2>
       <p>Have a question or want to follow my learning journey? Reach out!</p>
-
       <div class="contact-links">
         <a href="mailto:you@example.com" class="btn btn-primary">📧 Email Me</a>
         <a href="#" class="btn btn-secondary">GitHub</a>
