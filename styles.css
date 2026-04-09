@@ -1,8 +1,8 @@
 /* ============================================================
-   STYLES.CSS — My Web Products Hub
+   STYLES.CSS — My Web Products Hub (Dark Theme)
    
    TABLE OF CONTENTS:
-   1. CSS Variables (your color palette lives here)
+   1. CSS Variables
    2. Reset & Base Styles
    3. Typography
    4. Layout Utilities
@@ -19,20 +19,19 @@
 
 /* ============================================================
    1. CSS VARIABLES
-   Change colors here and they update everywhere on the page.
 ============================================================ */
 :root {
-  --color-bg:        #f5f0e8;   /* soft beige — page background */
-  --color-navy:      #1e3a5f;   /* deep navy — headings, navbar */
-  --color-green:     #4a7043;   /* soft green — accents, buttons */
-  --color-white:     #ffffff;
-  --color-light:     #eae5d8;   /* slightly darker beige for card bg */
-  --color-text:      #2c2c2c;   /* near-black for body copy */
-  --color-muted:     #6b6b6b;   /* gray for subtitles and notes */
-  --color-border:    #d0c9b8;   /* subtle border color */
+  --color-bg:        #1a2533;   /* dark blue-gray background */
+  --color-navy:      #1e3a5f;   /* kept as-is */
+  --color-green:     #5a9e50;   /* brightened green for dark bg */
+  --color-white:     #e8ecf1;   /* off-white for body text */
+  --color-light:     #243347;   /* card/section alt background */
+  --color-text:      #cdd5e0;   /* light gray body copy */
+  --color-muted:     #8a95a5;   /* muted text */
+  --color-border:    #2e4562;   /* subtle border */
 
   --font-main:       'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --max-width:       1100px;    /* maximum page content width */
+  --max-width:       1100px;
   --section-padding: 5rem 1.5rem;
   --radius:          10px;
   --transition:      0.25s ease;
@@ -41,16 +40,15 @@
 
 /* ============================================================
    2. RESET & BASE STYLES
-   Removes browser default spacing and sets the foundation.
 ============================================================ */
 *, *::before, *::after {
-  box-sizing: border-box;  /* padding no longer adds to element width */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  scroll-behavior: smooth; /* smooth scrolling when nav links are clicked */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -80,17 +78,17 @@ img {
    3. TYPOGRAPHY
 ============================================================ */
 h1, h2, h3 {
-  color: var(--color-navy);
+  color: var(--color-white);
   line-height: 1.25;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.2rem); } /* clamp() scales with screen size */
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
 h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
 h3 { font-size: 1.2rem; }
 
 p {
   margin-bottom: 1rem;
-  max-width: 65ch;   /* limits paragraph width for readability */
+  max-width: 65ch;
 }
 
 .highlight {
@@ -100,22 +98,17 @@ p {
 
 /* ============================================================
    4. LAYOUT UTILITIES
-   Reusable helper classes used across multiple sections.
 ============================================================ */
-
-/* Centers content and limits max width */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Standard section spacing */
 .section {
   padding: var(--section-padding);
 }
 
-/* Section headings with a decorative underline */
 .section-title {
   text-align: center;
   margin-bottom: 0.75rem;
@@ -139,7 +132,6 @@ p {
   margin-bottom: 2.5rem;
 }
 
-/* Button styles */
 .btn {
   display: inline-block;
   padding: 0.75rem 1.75rem;
@@ -152,24 +144,24 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--color-navy);
-  color: var(--color-white);
+  background-color: var(--color-green);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-green);
-  transform: translateY(-2px); /* subtle lift on hover */
+  background-color: #4a8842;
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-navy);
-  border-color: var(--color-navy);
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-navy);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-bg);
 }
 
 
@@ -178,10 +170,10 @@ p {
 ============================================================ */
 .site-header {
   background-color: var(--color-navy);
-  position: sticky;       /* sticks to the top while scrolling */
+  position: sticky;
   top: 0;
-  z-index: 100;           /* stays above all other content */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .navbar {
@@ -196,7 +188,7 @@ p {
 .nav-logo {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: #ffffff;
   letter-spacing: 0.5px;
 }
 
@@ -212,10 +204,9 @@ p {
 }
 
 .nav-links a:hover {
-  color: var(--color-white);
+  color: #ffffff;
 }
 
-/* Hamburger button — hidden on desktop */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -230,7 +221,7 @@ p {
   display: block;
   width: 26px;
   height: 2px;
-  background-color: var(--color-white);
+  background-color: #ffffff;
   border-radius: 2px;
   transition: var(--transition);
 }
@@ -240,7 +231,7 @@ p {
    6. HERO SECTION
 ============================================================ */
 .hero-section {
-  min-height: 90vh;                /* takes up most of the screen */
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,7 +240,7 @@ p {
   background: linear-gradient(
     160deg,
     var(--color-bg) 60%,
-    #dde8d4 100%   /* subtle green tint toward the bottom */
+    #1e3040 100%
   );
 }
 
@@ -269,7 +260,7 @@ p {
    7. ABOUT SECTION
 ============================================================ */
 .about-section {
-  background-color: var(--color-white);
+  background-color: var(--color-light);
 }
 
 .about-content {
@@ -289,7 +280,6 @@ p {
   background-color: var(--color-bg);
 }
 
-/* CSS Grid: auto-fill columns, min 240px each, max equal share */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -298,7 +288,7 @@ p {
 }
 
 .project-card {
-  background-color: var(--color-white);
+  background-color: var(--color-light);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 1.75rem 1.5rem;
@@ -307,8 +297,8 @@ p {
 }
 
 .project-card:hover {
-  transform: translateY(-5px);                   /* card lifts on hover */
-  box-shadow: 0 8px 24px rgba(30,58,95,0.12);    /* soft navy shadow */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
 .card-icon {
@@ -328,8 +318,8 @@ p {
 
 .card-tag {
   display: inline-block;
-  background-color: var(--color-light);
-  color: var(--color-navy);
+  background-color: var(--color-navy);
+  color: var(--color-white);
   font-size: 0.78rem;
   font-weight: 600;
   padding: 0.25rem 0.75rem;
@@ -342,19 +332,18 @@ p {
 ============================================================ */
 .features-section {
   background-color: var(--color-navy);
-  color: var(--color-white);
+  color: #ffffff;
 }
 
-/* Override title color inside the dark section */
 .features-section .section-title {
-  color: var(--color-white);
+  color: #ffffff;
 }
 
 .features-placeholder {
   max-width: 600px;
   margin: 2rem auto;
   text-align: center;
-  border: 2px dashed rgba(255,255,255,0.3);
+  border: 2px dashed rgba(255,255,255,0.25);
   border-radius: var(--radius);
   padding: 3rem 2rem;
 }
@@ -367,13 +356,13 @@ p {
 .features-label {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--color-white) !important;
+  color: #ffffff !important;
   margin-bottom: 0.5rem;
 }
 
 .features-note {
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.6) !important;
+  color: rgba(255,255,255,0.5) !important;
   margin-top: 0.5rem;
 }
 
@@ -382,7 +371,7 @@ p {
    10. CONTACT SECTION
 ============================================================ */
 .contact-section {
-  background-color: var(--color-white);
+  background-color: var(--color-light);
   text-align: center;
 }
 
@@ -394,7 +383,7 @@ p {
 
 .contact-links {
   display: flex;
-  flex-wrap: wrap;       /* wraps to a new line on small screens */
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 }
@@ -404,44 +393,40 @@ p {
    11. FOOTER
 ============================================================ */
 .site-footer {
-  background-color: var(--color-navy);
-  color: rgba(255,255,255,0.7);
+  background-color: #111c28;
+  color: rgba(255,255,255,0.5);
   text-align: center;
   padding: 1.75rem 1rem;
   font-size: 0.9rem;
 }
 
 .site-footer strong {
-  color: var(--color-white);
+  color: #ffffff;
 }
 
 
 /* ============================================================
    12. RESPONSIVE / MOBILE BREAKPOINTS
-   These rules only activate when the screen is 768px wide or less.
 ============================================================ */
 @media (max-width: 768px) {
 
-  /* Show the hamburger button */
   .nav-toggle {
     display: flex;
   }
 
-  /* Stack the nav links vertically, hidden by default */
   .nav-links {
     display: none;
     position: absolute;
-    top: 64px;            /* drops just below the navbar */
+    top: 64px;
     left: 0;
     right: 0;
     background-color: var(--color-navy);
     flex-direction: column;
     gap: 0;
     padding: 0.5rem 0 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   }
 
-  /* JS adds this class to show the menu */
   .nav-links.open {
     display: flex;
   }
@@ -451,7 +436,6 @@ p {
     padding: 0.75rem 1.5rem;
   }
 
-  /* Projects grid becomes 1 column on very small screens */
   .projects-grid {
     grid-template-columns: 1fr;
   }
