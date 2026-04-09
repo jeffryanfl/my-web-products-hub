@@ -2,11 +2,12 @@
 // SCRIPT.JS — My Web Products Hub
 //
 // TABLE OF CONTENTS:
-//   1. Mobile Navigation Toggle
-//   2. Smooth Scroll — Close Menu on Link Click
-//   3. Active Navigation Highlight on Scroll
-//   4. Project Card Click (placeholder for non-Rockville cards)
-//   5. Rockville Modal — Open / Close / Countdown
+//   1. No-JS Class Removal
+//   2. Mobile Navigation Toggle
+//   3. Smooth Scroll — Close Menu on Link Click
+//   4. Active Navigation Highlight (IntersectionObserver)
+//   5. Project Card Click (placeholder for non-Rockville cards)
+//   6. Rockville Modal — Open / Close / Countdown / Focus Trap
 // ============================================================
 
 
@@ -14,7 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================================
-  // 1. MOBILE NAVIGATION TOGGLE
+  // 1. NO-JS CLASS REMOVAL
+  // ==========================================================
+
+  document.documentElement.classList.remove('no-js');
+
+
+  // ==========================================================
+  // 2. MOBILE NAVIGATION TOGGLE
   // ==========================================================
 
   const navToggle = document.getElementById('navToggle');
@@ -29,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================================
-  // 2. CLOSE MOBILE MENU WHEN A LINK IS CLICKED
+  // 3. CLOSE MOBILE MENU WHEN A LINK IS CLICKED
   // ==========================================================
 
   const allNavLinks = document.querySelectorAll('.nav-links a');
@@ -42,47 +50,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================================
-  // 3. ACTIVE NAVIGATION HIGHLIGHT ON SCROLL
+  // 4. ACTIVE NAVIGATION HIGHLIGHT (IntersectionObserver)
   // ==========================================================
 
   const sections = document.querySelectorAll('section[id]');
 
-  function highlightNavOnScroll() {
-    const scrollY = window.scrollY + 100;
-
-    sections.forEach(function (section) {
-      const sectionTop    = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId     = section.getAttribute('id');
-
-      const matchingLink = document.querySelector('.nav-links a[href="#' + sectionId + '"]');
-
-      if (matchingLink) {
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-          allNavLinks.forEach(l => l.classList.remove('active'));
-          matchingLink.classList.add('active');
-        }
+  const navObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        allNavLinks.forEach(function (l) { l.classList.remove('active'); });
+        var link = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+        if (link) link.classList.add('active');
       }
     });
-  }
+  }, { rootMargin: '-50% 0px -50% 0px' });
 
-  highlightNavOnScroll();
-  window.addEventListener('scroll', highlightNavOnScroll);
-
-  const activeStyle = document.createElement('style');
-  activeStyle.textContent = `
-    .nav-links a.active {
-      color: #ffffff;
-      font-weight: 700;
-      border-bottom: 2px solid #5a9e50;
-      padding-bottom: 2px;
-    }
-  `;
-  document.head.appendChild(activeStyle);
+  sections.forEach(function (section) {
+    navObserver.observe(section);
+  });
 
 
   // ==========================================================
-  // 4. PROJECT CARD CLICK — Non-Rockville cards only
+  // 5. PROJECT CARD CLICK — Non-Rockville cards only
   // ==========================================================
 
   const projectCards = document.querySelectorAll('.project-card');
@@ -93,24 +82,47 @@ document.addEventListener('DOMContentLoaded', function () {
     if (card === rockvilleCard) return;
 
     card.addEventListener('click', function () {
-      const projectName = card.querySelector('h3').textContent;
-      alert('🚧 "' + projectName + '" is coming soon! Check back later.');
+      var projectName = card.querySelector('h3').textContent;
+      alert(projectName + ' is coming soon! Check back later.');
+    });
+
+    // Keyboard support for non-Rockville cards
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
     });
   });
 
 
   // ==========================================================
-  // 5. ROCKVILLE MODAL — Open / Close / Countdown
+  // 6. ROCKVILLE MODAL — Open / Close / Countdown / Focus Trap
   // ==========================================================
 
   const modal      = document.getElementById('rockvilleModal');
   const modalClose = document.getElementById('modalClose');
+
+  // Cache countdown DOM references
+  const cdDays  = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins  = document.getElementById('cdMins');
+  const cdSecs  = document.getElementById('cdSecs');
 
   // -- Open modal when Rockville card is clicked --
   rockvilleCard.addEventListener('click', function () {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';  // prevent background scroll
     startCountdown();
+    modalClose.focus();  // move focus into the modal
+  });
+
+  // Keyboard support for Rockville card
+  rockvilleCard.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      rockvilleCard.click();
+    }
   });
 
   // -- Close modal via X button --
@@ -134,7 +146,37 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.classList.remove('active');
     document.body.style.overflow = '';
     clearInterval(countdownInterval);
+    rockvilleCard.focus();  // return focus to the triggering element
   }
+
+
+  // -- Focus Trap inside modal --
+  modal.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+
+    var focusable = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusable.length === 0) return;
+
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      // Shift+Tab: if on first element, wrap to last
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      // Tab: if on last element, wrap to first
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
 
 
   // -- Countdown Timer --
@@ -143,39 +185,40 @@ document.addEventListener('DOMContentLoaded', function () {
   let countdownInterval;
 
   function startCountdown() {
+    clearInterval(countdownInterval);  // prevent stacking intervals
     updateCountdown();  // run once immediately
     countdownInterval = setInterval(updateCountdown, 1000);
   }
 
   function updateCountdown() {
-    const now  = new Date();
-    const diff = rockvilleDate - now;
+    var now  = new Date();
+    var diff = rockvilleDate - now;
 
     if (diff <= 0) {
-      document.getElementById('cdDays').textContent  = '0';
-      document.getElementById('cdHours').textContent = '0';
-      document.getElementById('cdMins').textContent  = '0';
-      document.getElementById('cdSecs').textContent  = '0';
+      cdDays.textContent  = '0';
+      cdHours.textContent = '0';
+      cdMins.textContent  = '0';
+      cdSecs.textContent  = '0';
       clearInterval(countdownInterval);
       return;
     }
 
-    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins  = Math.floor((diff / (1000 * 60)) % 60);
-    const secs  = Math.floor((diff / 1000) % 60);
+    var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    var mins  = Math.floor((diff / (1000 * 60)) % 60);
+    var secs  = Math.floor((diff / 1000) % 60);
 
-    document.getElementById('cdDays').textContent  = days;
-    document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('cdMins').textContent  = String(mins).padStart(2, '0');
-    document.getElementById('cdSecs').textContent  = String(secs).padStart(2, '0');
+    cdDays.textContent  = days;
+    cdHours.textContent = String(hours).padStart(2, '0');
+    cdMins.textContent  = String(mins).padStart(2, '0');
+    cdSecs.textContent  = String(secs).padStart(2, '0');
   }
 
 
   // ==========================================================
   // LOG
   // ==========================================================
-  console.log('✅ script.js loaded successfully — My Web Products Hub is live!');
+  console.log('script.js loaded — My Web Products Hub is live!');
 
 
 }); // End of DOMContentLoaded

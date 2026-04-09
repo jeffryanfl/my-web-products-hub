@@ -31,6 +31,11 @@
   --color-muted:     #8a95a5;
   --color-border:    #2e4562;
 
+  --color-red:       #ff4444;
+  --color-red-dark:  #c0392b;
+  --color-modal-bg:  #141d2a;
+  --color-footer-bg: #111c28;
+
   --font-main:       'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --max-width:       1100px;
   --section-padding: 5rem 1.5rem;
@@ -184,6 +189,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .nav-logo {
@@ -204,8 +210,15 @@ p {
   transition: color var(--transition);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: #ffffff;
+}
+
+.nav-links a.active {
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-green);
+  padding-bottom: 2px;
 }
 
 .nav-toggle {
@@ -354,16 +367,16 @@ p {
   color: rgba(255,255,255,0.85);
 }
 
-.features-label {
+.features-placeholder .features-label {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #ffffff !important;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
-.features-note {
+.features-placeholder .features-note {
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.5) !important;
+  color: rgba(255,255,255,0.5);
   margin-top: 0.5rem;
 }
 
@@ -394,7 +407,7 @@ p {
    11. FOOTER
 ============================================================ */
 .site-footer {
-  background-color: #111c28;
+  background-color: var(--color-footer-bg);
   color: rgba(255,255,255,0.5);
   text-align: center;
   padding: 1.75rem 1rem;
@@ -432,8 +445,8 @@ p {
 
 /* The modal box itself */
 .modal {
-  background-color: #141d2a;
-  border: 1px solid #2e4562;
+  background-color: var(--color-modal-bg);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
   max-width: 720px;
   width: 100%;
@@ -449,7 +462,7 @@ p {
   right: 1.25rem;
   background: none;
   border: none;
-  color: #8a95a5;
+  color: var(--color-muted);
   font-size: 2rem;
   cursor: pointer;
   line-height: 1;
@@ -457,31 +470,31 @@ p {
 }
 
 .modal-close:hover {
-  color: #ff4444;
+  color: var(--color-red);
 }
 
 /* Modal title */
 .modal-title {
   font-size: 2rem;
   text-align: center;
-  color: #e8ecf1;
+  color: var(--color-white);
   margin-bottom: 0.25rem;
 }
 
 .modal-subtitle {
   text-align: center;
-  color: #8a95a5;
+  color: var(--color-muted);
   font-size: 0.95rem;
   margin-bottom: 2rem;
 }
 
 /* Section headings inside modal */
 .modal-section-heading {
-  color: #c0392b;
+  color: var(--color-red-dark);
   font-size: 1.15rem;
   margin: 2.5rem 0 1rem;
   padding-bottom: 0.4rem;
-  border-bottom: 2px solid #2e4562;
+  border-bottom: 2px solid var(--color-border);
 }
 
 /* ---- Countdown ---- */
@@ -494,7 +507,7 @@ p {
 
 .countdown-unit {
   text-align: center;
-  background-color: #1e3a5f;
+  background-color: var(--color-navy);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   min-width: 80px;
@@ -504,14 +517,14 @@ p {
   display: block;
   font-size: 2rem;
   font-weight: 800;
-  color: #ff4444;
+  color: var(--color-red);
   font-variant-numeric: tabular-nums;
 }
 
 .countdown-label {
   display: block;
   font-size: 0.75rem;
-  color: #8a95a5;
+  color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 0.25rem;
@@ -525,14 +538,14 @@ p {
 }
 
 .set-day {
-  background-color: #1a2533;
-  border: 1px solid #2e4562;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1rem;
 }
 
 .set-day h4 {
-  color: #ff4444;
+  color: var(--color-red);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -545,7 +558,7 @@ p {
 
 .set-day li {
   font-size: 0.85rem;
-  color: #cdd5e0;
+  color: var(--color-text);
   padding: 0.3rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
@@ -555,7 +568,7 @@ p {
 }
 
 .band-time {
-  color: #8a95a5;
+  color: var(--color-muted);
   font-size: 0.75rem;
   margin-right: 0.5rem;
 }
@@ -572,8 +585,8 @@ p {
 }
 
 .gallery-placeholder {
-  background-color: #1a2533;
-  border: 1px solid #2e4562;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   height: 120px;
   display: flex;
@@ -584,7 +597,7 @@ p {
 
 .gallery-caption {
   font-size: 0.8rem;
-  color: #8a95a5;
+  color: var(--color-muted);
   margin-top: 0.5rem;
 }
 
@@ -601,7 +614,7 @@ p {
   .nav-links {
     display: none;
     position: absolute;
-    top: 64px;
+    top: 100%;
     left: 0;
     right: 0;
     background-color: var(--color-navy);
@@ -649,4 +662,45 @@ p {
   .gallery {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+
+/* ============================================================
+   14. REDUCED MOTION
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+
+/* ============================================================
+   15. NOSCRIPT FALLBACK
+============================================================ */
+.noscript-banner {
+  background-color: var(--color-red);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+/* When JS is disabled, always show nav links and hide the toggle */
+.no-js .nav-toggle {
+  display: none !important;
+}
+
+.no-js .nav-links {
+  display: flex !important;
+}
+
+/* Remove pointer cursor from cards when JS is disabled */
+.no-js .project-card {
+  cursor: default;
 }

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jeff's personal web learning hub — a collection of projects built while learning HTML, CSS, and JavaScript from scratch." />
+  <meta property="og:title" content="My Web Products Hub" />
+  <meta property="og:description" content="Jeff's personal web learning hub — projects built while learning HTML, CSS, and JavaScript." />
+  <meta property="og:type" content="website" />
   <title>My Web Products Hub</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <noscript>
+    <div class="noscript-banner">
+      This site works best with JavaScript enabled. Some interactive features (modal, countdown, navigation toggle) won't be available without it.
+    </div>
+  </noscript>
 
   <header class="site-header">
     <nav class="navbar">
@@ -59,28 +69,28 @@
       <div class="projects-grid">
 
         <!-- Rockville card — opens modal -->
-        <div class="project-card" id="rockvilleCard">
+        <div class="project-card" id="rockvilleCard" role="button" tabindex="0">
           <div class="card-icon">🤘🔥</div>
           <h3>Rockville '26</h3>
-          <p>A short description of what this project does will go here.</p>
+          <p>Countdown timer and lineup tracker for the Welcome to Rockville festival, May 2026.</p>
           <span class="card-tag">HTML / CSS</span>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" role="button" tabindex="0">
           <div class="card-icon">✝️📖</div>
           <h3>NIFB</h3>
           <p>A short description of what this project does will go here.</p>
           <span class="card-tag">JavaScript</span>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" role="button" tabindex="0">
           <div class="card-icon">📊</div>
           <h3>Project 3</h3>
           <p>A short description of what this project does will go here.</p>
           <span class="card-tag">Charts</span>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" role="button" tabindex="0">
           <div class="card-icon">📝</div>
           <h3>Project 4</h3>
           <p>A short description of what this project does will go here.</p>
@@ -95,12 +105,12 @@
   <!-- ============================================================
        ROCKVILLE '26 MODAL
   ============================================================ -->
-  <div class="modal-overlay" id="rockvilleModal">
+  <div class="modal-overlay" id="rockvilleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
 
       <!-- Title -->
-      <h2 class="modal-title">🤘 Rockville '26 🔥</h2>
+      <h2 class="modal-title" id="modalTitle">🤘 Rockville '26 🔥</h2>
       <p class="modal-subtitle">May 7 – 10, 2026 · Daytona International Speedway</p>
 
       <!-- Countdown -->
@@ -209,8 +219,8 @@
       <p>Have a question or want to follow my learning journey? Reach out!</p>
       <div class="contact-links">
         <a href="mailto:you@example.com" class="btn btn-primary">📧 Email Me</a>
-        <a href="#" class="btn btn-secondary">GitHub</a>
-        <a href="#" class="btn btn-secondary">LinkedIn</a>
+        <a href="https://github.com/jeffryanfl" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </section>
