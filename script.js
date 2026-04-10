@@ -1,13 +1,14 @@
 // ============================================================
-// SCRIPT.JS — My Web Products Hub
+// SCRIPT.JS — Web Products Hub
 //
 // TABLE OF CONTENTS:
 //   1. No-JS Class Removal
 //   2. Mobile Navigation Toggle
 //   3. Smooth Scroll — Close Menu on Link Click
 //   4. Active Navigation Highlight (IntersectionObserver)
-//   5. Project Card Click (placeholder for non-Rockville cards)
+//   5. Project Card Click (generic cards)
 //   6. Rockville Modal — Open / Close / Countdown / Focus Trap
+//   7. Risk Management Modal — Open / Close / Focus Trap
 // ============================================================
 
 
@@ -71,22 +72,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================================
-  // 5. PROJECT CARD CLICK — Non-Rockville cards only
+  // 5. PROJECT CARD CLICK — Generic cards only
   // ==========================================================
 
   const projectCards = document.querySelectorAll('.project-card');
   const rockvilleCard = document.getElementById('rockvilleCard');
+  const riskCard = document.getElementById('riskCard');
+
+  // Cards with dedicated modals are handled separately
+  var modalCards = [rockvilleCard, riskCard];
 
   projectCards.forEach(function (card) {
-    // Skip the Rockville card — it has its own handler below
-    if (card === rockvilleCard) return;
+    if (modalCards.indexOf(card) !== -1) return;
 
     card.addEventListener('click', function () {
       var projectName = card.querySelector('h3').textContent;
       alert(projectName + ' is coming soon! Check back later.');
     });
 
-    // Keyboard support for non-Rockville cards
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -216,9 +219,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ==========================================================
+  // 7. RISK MANAGEMENT MODAL — Open / Close / Focus Trap
+  // ==========================================================
+
+  var riskModal      = document.getElementById('riskModal');
+  var riskModalClose = document.getElementById('riskModalClose');
+
+  riskCard.addEventListener('click', function () {
+    riskModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    riskModalClose.focus();
+  });
+
+  riskCard.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      riskCard.click();
+    }
+  });
+
+  riskModalClose.addEventListener('click', closeRiskModal);
+
+  riskModal.addEventListener('click', function (e) {
+    if (e.target === riskModal) closeRiskModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && riskModal.classList.contains('active')) {
+      closeRiskModal();
+    }
+  });
+
+  function closeRiskModal() {
+    riskModal.classList.remove('active');
+    document.body.style.overflow = '';
+    riskCard.focus();
+  }
+
+  // Focus trap for risk modal
+  riskModal.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+
+    var focusable = riskModal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+
+  // ==========================================================
   // LOG
   // ==========================================================
-  console.log('script.js loaded — My Web Products Hub is live!');
+  console.log('script.js loaded — Web Products Hub is live!');
 
 
 }); // End of DOMContentLoaded

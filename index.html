@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jeff's personal web learning hub — a collection of projects built while learning HTML, CSS, and JavaScript from scratch." />
-  <meta property="og:title" content="My Web Products Hub" />
-  <meta property="og:description" content="Jeff's personal web learning hub — projects built while learning HTML, CSS, and JavaScript." />
+  <meta name="description" content="A dedicated workspace for building real web projects — workshop, portfolio, and living record of progress." />
+  <meta property="og:title" content="Web Products Hub" />
+  <meta property="og:description" content="A dedicated workspace for building real web projects — workshop, portfolio, and living record of progress." />
   <meta property="og:type" content="website" />
-  <title>My Web Products Hub</title>
+  <title>Web Products Hub</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,7 +20,7 @@
 
   <header class="site-header">
     <nav class="navbar">
-      <a href="#hero" class="nav-logo">My Hub</a>
+      <a href="#hero" class="nav-logo">The Hub</a>
       <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
         <span></span>
         <span></span>
@@ -37,25 +37,29 @@
 
   <section id="hero" class="hero-section">
     <div class="hero-content">
-      <h1>Hello, I'm <span class="highlight">Jeff</span></h1>
-      <p class="tagline">My Web Learning Projects – April 2026</p>
-      <a href="#projects" class="btn btn-primary">Browse My Projects</a>
+      <h1>Hello</h1>
+      <p class="tagline">Web Learning Projects – April 2026</p>
+      <a href="#projects" class="btn btn-primary">Browse Projects</a>
     </div>
   </section>
 
   <section id="about" class="section about-section">
     <div class="container">
-      <h2 class="section-title">About Me & Why I'm Building This</h2>
+      <h2 class="section-title">About This Site</h2>
       <div class="about-content">
         <p>
-          Hi! I'm learning web development from scratch. This site is my personal
-          learning lab — a place to collect, showcase, and grow all the projects
-          I build along the way.
+          This site is a dedicated workspace for building real web projects — equal
+          parts workshop and living portfolio. Every project here was built from the
+          ground up to solve a problem, explore an idea, or push into new territory.
         </p>
         <p>
-          I started with zero coding experience. My goal is to understand how
-          the web really works: HTML for structure, CSS for style, and JavaScript
-          for interactivity. Every project here represents a new skill unlocked.
+          The goal is simple: build consistently, experiment regularly, and turn ideas
+          into working experiences. Over time this collection will grow to include
+          interactive tools, data visualizations, galleries, and mini-applications.
+        </p>
+        <p>
+          Progress is the point. Each new project is proof that showing up and shipping
+          work compounds into something worth sharing. This is the record of that momentum.
         </p>
       </div>
     </div>
@@ -63,7 +67,7 @@
 
   <section id="projects" class="section projects-section">
     <div class="container">
-      <h2 class="section-title">My Projects</h2>
+      <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Click a card to learn more (coming soon!)</p>
 
       <div class="projects-grid">
@@ -83,10 +87,10 @@
           <span class="card-tag">JavaScript</span>
         </div>
 
-        <div class="project-card" role="button" tabindex="0">
+        <div class="project-card" id="riskCard" role="button" tabindex="0">
           <div class="card-icon">📊</div>
-          <h3>Project 3</h3>
-          <p>A short description of what this project does will go here.</p>
+          <h3>Risk Management</h3>
+          <p>Sample risk dashboard with inherent and residual risk level charts.</p>
           <span class="card-tag">Charts</span>
         </div>
 
@@ -199,6 +203,137 @@
   </div>
 
 
+  <!-- ============================================================
+       RISK MANAGEMENT MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="riskModal" role="dialog" aria-modal="true" aria-labelledby="riskModalTitle">
+    <div class="modal">
+      <button class="modal-close" id="riskModalClose" aria-label="Close modal">&times;</button>
+
+      <h2 class="modal-title" id="riskModalTitle">📊 Risk Management Dashboard</h2>
+      <p class="modal-subtitle">Sample inherent &amp; residual risk analysis</p>
+
+      <!-- Inherent Risk Chart -->
+      <h3 class="modal-section-heading">Inherent Risk Levels</h3>
+      <p class="chart-description">Risk levels before any controls or mitigations are applied.</p>
+      <div class="risk-chart">
+        <div class="risk-bar-row">
+          <span class="risk-label">Cybersecurity Breach</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-critical" style="width: 92%"><span>92</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Regulatory Non-Compliance</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-high" style="width: 78%"><span>78</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Supply Chain Disruption</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-high" style="width: 71%"><span>71</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Key Personnel Loss</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-medium" style="width: 55%"><span>55</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Market Volatility</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-medium" style="width: 48%"><span>48</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Natural Disaster</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-low" style="width: 30%"><span>30</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Residual Risk Chart -->
+      <h3 class="modal-section-heading">Residual Risk Levels</h3>
+      <p class="chart-description">Risk levels after controls and mitigations are in place.</p>
+      <div class="risk-chart">
+        <div class="risk-bar-row">
+          <span class="risk-label">Cybersecurity Breach</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-medium" style="width: 40%"><span>40</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Regulatory Non-Compliance</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-low" style="width: 25%"><span>25</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Supply Chain Disruption</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-medium" style="width: 38%"><span>38</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Key Personnel Loss</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-low" style="width: 22%"><span>22</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Market Volatility</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-low" style="width: 28%"><span>28</span></div>
+          </div>
+        </div>
+        <div class="risk-bar-row">
+          <span class="risk-label">Natural Disaster</span>
+          <div class="risk-bar-track">
+            <div class="risk-bar risk-low" style="width: 15%"><span>15</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Risk Matrix -->
+      <h3 class="modal-section-heading">Risk Heat Map</h3>
+      <div class="risk-matrix">
+        <div class="matrix-y-label">Likelihood</div>
+        <div class="matrix-grid">
+          <div class="matrix-cell risk-bg-medium">Med</div>
+          <div class="matrix-cell risk-bg-high">High</div>
+          <div class="matrix-cell risk-bg-critical">Crit</div>
+          <div class="matrix-cell risk-bg-critical risk-has-dot">Crit</div>
+          <div class="matrix-cell risk-bg-low">Low</div>
+          <div class="matrix-cell risk-bg-medium risk-has-dot">Med</div>
+          <div class="matrix-cell risk-bg-high risk-has-dot">High</div>
+          <div class="matrix-cell risk-bg-critical">Crit</div>
+          <div class="matrix-cell risk-bg-low">Low</div>
+          <div class="matrix-cell risk-bg-low risk-has-dot">Low</div>
+          <div class="matrix-cell risk-bg-medium">Med</div>
+          <div class="matrix-cell risk-bg-high risk-has-dot">High</div>
+          <div class="matrix-cell risk-bg-low">Low</div>
+          <div class="matrix-cell risk-bg-low">Low</div>
+          <div class="matrix-cell risk-bg-low">Low</div>
+          <div class="matrix-cell risk-bg-medium">Med</div>
+        </div>
+        <div class="matrix-x-label">Impact</div>
+      </div>
+
+      <!-- Legend -->
+      <div class="risk-legend">
+        <div class="legend-item"><span class="legend-swatch risk-bg-critical"></span> Critical (76–100)</div>
+        <div class="legend-item"><span class="legend-swatch risk-bg-high"></span> High (51–75)</div>
+        <div class="legend-item"><span class="legend-swatch risk-bg-medium"></span> Medium (26–50)</div>
+        <div class="legend-item"><span class="legend-swatch risk-bg-low"></span> Low (0–25)</div>
+      </div>
+
+    </div>
+  </div>
+
+
   <section id="features" class="section features-section">
     <div class="container">
       <h2 class="section-title">Interactive Features Preview</h2>
@@ -216,7 +351,7 @@
   <section id="contact" class="section contact-section">
     <div class="container">
       <h2 class="section-title">Get in Touch</h2>
-      <p>Have a question or want to follow my learning journey? Reach out!</p>
+      <p>Have a question or want to follow the learning journey? Reach out!</p>
       <div class="contact-links">
         <a href="mailto:you@example.com" class="btn btn-primary">📧 Email Me</a>
         <a href="https://github.com/jeffryanfl" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -226,7 +361,7 @@
   </section>
 
   <footer class="site-footer">
-    <p>Built by <strong>Jeff</strong> · April 2026 · Learning in Public</p>
+    <p>Web Products Hub · April 2026 · Building in Public</p>
   </footer>
 
   <script src="script.js"></script>

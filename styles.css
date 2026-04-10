@@ -1,6 +1,6 @@
 /* ============================================================
-   STYLES.CSS — My Web Products Hub (Dark Theme)
-   
+   STYLES.CSS — Web Products Hub (Dark Theme)
+
    TABLE OF CONTENTS:
    1. CSS Variables
    2. Reset & Base Styles
@@ -13,8 +13,11 @@
    9. Features Section
    10. Contact Section
    11. Footer
-   12. Modal
-   13. Responsive / Mobile Breakpoints
+   12. Modal (Rockville)
+   13. Risk Management Charts & Matrix
+   14. Responsive / Mobile Breakpoints
+   15. Reduced Motion
+   16. Noscript Fallback
 ============================================================ */
 
 
@@ -24,7 +27,7 @@
 :root {
   --color-bg:        #1a2533;
   --color-navy:      #1e3a5f;
-  --color-green:     #5a9e50;
+  --color-accent:    #7c6f9e;
   --color-white:     #e8ecf1;
   --color-light:     #243347;
   --color-text:      #cdd5e0;
@@ -98,7 +101,7 @@ p {
 }
 
 .highlight {
-  color: var(--color-green);
+  color: var(--color-accent);
 }
 
 
@@ -127,7 +130,7 @@ p {
   display: block;
   width: 60px;
   height: 4px;
-  background-color: var(--color-green);
+  background-color: var(--color-accent);
   margin: 0.5rem auto 0;
   border-radius: 2px;
 }
@@ -150,12 +153,12 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--color-green);
+  background-color: var(--color-accent);
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #4a8842;
+  background-color: #665a88;
   transform: translateY(-2px);
 }
 
@@ -217,7 +220,7 @@ p {
 
 .nav-links a.active {
   font-weight: 700;
-  border-bottom: 2px solid var(--color-green);
+  border-bottom: 2px solid var(--color-accent);
   padding-bottom: 2px;
 }
 
@@ -603,7 +606,143 @@ p {
 
 
 /* ============================================================
-   13. RESPONSIVE / MOBILE BREAKPOINTS
+   13. RISK MANAGEMENT MODAL — Charts & Matrix
+============================================================ */
+
+.chart-description {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+/* --- Horizontal bar chart --- */
+.risk-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.risk-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.risk-label {
+  flex: 0 0 180px;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.risk-bar-track {
+  flex: 1;
+  background-color: var(--color-bg);
+  border-radius: 6px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.risk-bar {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: width 0.6s ease;
+}
+
+.risk-critical { background-color: #d63031; }
+.risk-high     { background-color: #e17055; }
+.risk-medium   { background-color: #fdcb6e; color: #1a2533; }
+.risk-low      { background-color: #00b894; }
+
+/* --- Risk Heat Map (4x4 matrix) --- */
+.risk-matrix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 1.5rem auto;
+  max-width: 360px;
+}
+
+.matrix-y-label,
+.matrix-x-label {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.matrix-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  position: relative;
+}
+
+.risk-has-dot::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.risk-bg-critical { background-color: #d63031; }
+.risk-bg-high     { background-color: #e17055; }
+.risk-bg-medium   { background-color: #fdcb6e; color: #1a2533; }
+.risk-bg-low      { background-color: #00b894; }
+
+/* --- Legend --- */
+.risk-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--color-text);
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+
+/* ============================================================
+   14. RESPONSIVE / MOBILE BREAKPOINTS
 ============================================================ */
 @media (max-width: 768px) {
 
@@ -662,11 +801,27 @@ p {
   .gallery {
     grid-template-columns: 1fr 1fr;
   }
+
+  /* Risk chart mobile */
+  .risk-bar-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .risk-label {
+    flex: none;
+    text-align: left;
+  }
+
+  .risk-bar-track {
+    width: 100%;
+  }
 }
 
 
 /* ============================================================
-   14. REDUCED MOTION
+   15. REDUCED MOTION
 ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
