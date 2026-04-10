@@ -330,6 +330,40 @@
         <div class="legend-item"><span class="legend-swatch risk-bg-low"></span> Low (0–25)</div>
       </div>
 
+      <!-- Interactive Risk Calculator -->
+      <h3 class="modal-section-heading">Risk Calculator</h3>
+      <p class="chart-description">Adjust the sliders to see how controls reduce inherent risk.</p>
+
+      <div class="risk-sliders">
+        <div class="slider-group">
+          <label for="sliderImpact">Inherent Impact</label>
+          <div class="slider-row">
+            <input type="range" id="sliderImpact" min="1" max="5" value="3" step="1" />
+            <span class="slider-value" id="sliderImpactVal">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <label for="sliderLikelihood">Inherent Likelihood</label>
+          <div class="slider-row">
+            <input type="range" id="sliderLikelihood" min="1" max="5" value="3" step="1" />
+            <span class="slider-value" id="sliderLikelihoodVal">3</span>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <label for="sliderControl">Control Effectiveness</label>
+          <div class="slider-row">
+            <input type="range" id="sliderControl" min="0" max="100" value="50" step="1" />
+            <span class="slider-value" id="sliderControlVal">50%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="risk-canvas-wrapper">
+        <canvas id="riskCalcChart" width="600" height="300"></canvas>
+      </div>
+
     </div>
   </div>
 
@@ -364,6 +398,7 @@
     <p>Web Products Hub · April 2026 · Building in Public</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="script.js"></script>
 
 </body>

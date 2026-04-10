@@ -9,6 +9,7 @@
 //   5. Project Card Click (generic cards)
 //   6. Rockville Modal — Open / Close / Countdown / Focus Trap
 //   7. Risk Management Modal — Open / Close / Focus Trap
+//   8. Risk Calculator — Sliders + Chart.js
 // ============================================================
 
 
@@ -229,6 +230,12 @@ document.addEventListener('DOMContentLoaded', function () {
     riskModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     riskModalClose.focus();
+    // Canvas has zero size while the modal is hidden (display:none).
+    // Wait one frame so the browser can lay out the now-visible modal,
+    // then create or resize the chart.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(initRiskChart);
+    });
   });
 
   riskCard.addEventListener('keydown', function (e) {
@@ -274,6 +281,130 @@ document.addEventListener('DOMContentLoaded', function () {
       if (document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
+
+
+  // ==========================================================
+  // 8. RISK CALCULATOR — Sliders + Chart.js
+  // ==========================================================
+
+  var sliderImpact     = document.getElementById('sliderImpact');
+  var sliderLikelihood = document.getElementById('sliderLikelihood');
+  var sliderControl    = document.getElementById('sliderControl');
+
+  var sliderImpactVal     = document.getElementById('sliderImpactVal');
+  var sliderLikelihoodVal = document.getElementById('sliderLikelihoodVal');
+  var sliderControlVal    = document.getElementById('sliderControlVal');
+
+  // Update dynamic labels and redraw chart on every slider move
+  sliderImpact.addEventListener('input', function () {
+    sliderImpactVal.textContent = sliderImpact.value;
+    updateRiskChart();
+  });
+
+  sliderLikelihood.addEventListener('input', function () {
+    sliderLikelihoodVal.textContent = sliderLikelihood.value;
+    updateRiskChart();
+  });
+
+  sliderControl.addEventListener('input', function () {
+    sliderControlVal.textContent = sliderControl.value + '%';
+    updateRiskChart();
+  });
+
+  // --- Chart instance (null until modal is first opened) ---
+  var riskCalcChart = null;
+
+  // Calculate scores from the current slider positions
+  function getRiskScores() {
+    var impact     = parseInt(sliderImpact.value);
+    var likelihood = parseInt(sliderLikelihood.value);
+    var control    = parseInt(sliderControl.value) / 100;
+
+    var inherent = impact * likelihood;           // max 25
+    var residual = inherent * (1 - control);      // reduced by control %
+
+    return { inherent: inherent, residual: residual };
+  }
+
+  // Called from slider listeners — only touches data, never creates the chart
+  function updateRiskChart() {
+    if (!riskCalcChart) return;                   // chart not built yet
+
+    var scores = getRiskScores();
+    riskCalcChart.data.datasets[0].data = [scores.inherent, scores.residual];
+    riskCalcChart.update();
+  }
+
+  // Called once per modal open — creates or resizes the chart
+  function initRiskChart() {
+    var scores = getRiskScores();
+
+    // If the chart already exists, just resize it to match the now-visible
+    // container dimensions and push in the latest data.
+    if (riskCalcChart) {
+      riskCalcChart.data.datasets[0].data = [scores.inherent, scores.residual];
+      riskCalcChart.resize();
+      riskCalcChart.update();
+      return;
+    }
+
+    // First open — create the chart from scratch
+    var ctx = document.getElementById('riskCalcChart').getContext('2d');
+
+    riskCalcChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Inherent Risk', 'Residual Risk'],
+        datasets: [{
+          label: 'Risk Score',
+          data: [scores.inherent, scores.residual],
+          backgroundColor: [
+            'rgba(220, 53, 69, 0.85)',   // red  — inherent
+            'rgba(60, 120, 216, 0.85)'   // blue — residual
+          ],
+          borderColor: [
+            'rgb(220, 53, 69)',
+            'rgb(60, 120, 216)'
+          ],
+          borderWidth: 1,
+          borderRadius: 6,
+          maxBarThickness: 80
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 300 },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 25,
+            title: {
+              display: true,
+              text: 'Risk Score (Impact \u00d7 Likelihood)',
+              color: '#cdd5e0'
+            },
+            ticks: { color: '#8a95a5', stepSize: 5 },
+            grid:  { color: 'rgba(255,255,255,0.06)' }
+          },
+          x: {
+            ticks: { color: '#cdd5e0' },
+            grid:  { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return 'Score: ' + context.parsed.y.toFixed(1);
+              }
+            }
+          }
+        }
+      }
+    });
+  }
 
 
   // ==========================================================
