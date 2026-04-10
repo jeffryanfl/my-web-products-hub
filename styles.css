@@ -14,7 +14,7 @@
    10. Contact Section
    11. Footer
    12. Modal (Rockville)
-   13. Risk Management Charts & Matrix
+   13. Risk Management Interactive Calculator
    14. Responsive / Mobile Breakpoints
    15. Reduced Motion
    16. Noscript Fallback
@@ -606,138 +606,13 @@ p {
 
 
 /* ============================================================
-   13. RISK MANAGEMENT MODAL — Charts & Matrix
+   13. RISK MANAGEMENT MODAL — Interactive Calculator
 ============================================================ */
 
 .chart-description {
   font-size: 0.85rem;
   color: var(--color-muted);
   margin-bottom: 1rem;
-}
-
-/* --- Horizontal bar chart --- */
-.risk-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.risk-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.risk-label {
-  flex: 0 0 180px;
-  font-size: 0.8rem;
-  color: var(--color-text);
-  text-align: right;
-}
-
-.risk-bar-track {
-  flex: 1;
-  background-color: var(--color-bg);
-  border-radius: 6px;
-  height: 24px;
-  overflow: hidden;
-}
-
-.risk-bar {
-  height: 100%;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 8px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #ffffff;
-  transition: width 0.6s ease;
-}
-
-.risk-critical { background-color: #d63031; }
-.risk-high     { background-color: #e17055; }
-.risk-medium   { background-color: #fdcb6e; color: #1a2533; }
-.risk-low      { background-color: #00b894; }
-
-/* --- Risk Heat Map (4x4 matrix) --- */
-.risk-matrix {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  margin: 1.5rem auto;
-  max-width: 360px;
-}
-
-.matrix-y-label,
-.matrix-x-label {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.matrix-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  width: 100%;
-}
-
-.matrix-cell {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.85);
-  position: relative;
-}
-
-.risk-has-dot::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 8px;
-  height: 8px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.2);
-}
-
-.risk-bg-critical { background-color: #d63031; }
-.risk-bg-high     { background-color: #e17055; }
-.risk-bg-medium   { background-color: #fdcb6e; color: #1a2533; }
-.risk-bg-low      { background-color: #00b894; }
-
-/* --- Legend --- */
-.risk-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.78rem;
-  color: var(--color-text);
-}
-
-.legend-swatch {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
 }
 
 /* --- Sliders --- */
@@ -800,6 +675,120 @@ p {
   font-weight: 700;
   color: var(--color-accent);
 }
+
+/* --- Interactive 5×5 Risk Matrix --- */
+.calc-matrix-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 1.5rem auto;
+  max-width: 380px;
+}
+
+.calc-matrix-y,
+.calc-matrix-x {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.calc-matrix {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.calc-cell {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  background-color: var(--color-light);
+  border: 2px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+/* Tier-based background colors applied by JS */
+.calc-cell.tier-low      { background-color: #00b894; color: rgba(255,255,255,0.85); }
+.calc-cell.tier-medium   { background-color: #fdcb6e; color: #1a2533; }
+.calc-cell.tier-high     { background-color: #e17055; color: rgba(255,255,255,0.85); }
+.calc-cell.tier-critical { background-color: #d63031; color: rgba(255,255,255,0.85); }
+
+/* Inherent highlight — red ring */
+.calc-cell.mark-inherent {
+  border-color: rgb(220, 53, 69);
+  transform: scale(1.12);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
+}
+
+/* Residual highlight — blue ring */
+.calc-cell.mark-residual {
+  border-color: rgb(60, 120, 216);
+  transform: scale(1.12);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(60, 120, 216, 0.6);
+}
+
+/* When both land on the same cell — split border */
+.calc-cell.mark-inherent.mark-residual {
+  border-image: linear-gradient(135deg, rgb(220,53,69) 50%, rgb(60,120,216) 50%) 1;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.4), 0 0 10px rgba(60, 120, 216, 0.4);
+}
+
+/* --- Score readout --- */
+.score-readout {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+.readout-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.readout-label {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.readout-score {
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.readout-tier {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Inherent readout colors */
+.readout-inherent .readout-score { color: rgb(220, 53, 69); }
+.readout-inherent .readout-tier  { background-color: rgba(220, 53, 69, 0.2); color: rgb(220, 53, 69); }
+
+/* Residual readout colors */
+.readout-residual .readout-score { color: rgb(60, 120, 216); }
+.readout-residual .readout-tier  { background-color: rgba(60, 120, 216, 0.2); color: rgb(60, 120, 216); }
 
 /* --- Canvas wrapper --- */
 .risk-canvas-wrapper {
@@ -874,21 +863,6 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Risk chart mobile */
-  .risk-bar-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .risk-label {
-    flex: none;
-    text-align: left;
-  }
-
-  .risk-bar-track {
-    width: 100%;
-  }
 }
 
 

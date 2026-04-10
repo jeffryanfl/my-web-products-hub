@@ -10,6 +10,7 @@
 //   6. Rockville Modal — Open / Close / Countdown / Focus Trap
 //   7. Risk Management Modal — Open / Close / Focus Trap
 //   8. Risk Calculator — Sliders + Chart.js
+//   9. Interactive 5×5 Matrix — Highlight + Score Readout
 // ============================================================
 
 
@@ -295,43 +296,129 @@ document.addEventListener('DOMContentLoaded', function () {
   var sliderLikelihoodVal = document.getElementById('sliderLikelihoodVal');
   var sliderControlVal    = document.getElementById('sliderControlVal');
 
-  // Update dynamic labels and redraw chart on every slider move
-  sliderImpact.addEventListener('input', function () {
-    sliderImpactVal.textContent = sliderImpact.value;
-    updateRiskChart();
-  });
-
-  sliderLikelihood.addEventListener('input', function () {
+  // Central update — called on every slider move
+  function onSliderInput() {
+    sliderImpactVal.textContent     = sliderImpact.value;
     sliderLikelihoodVal.textContent = sliderLikelihood.value;
+    sliderControlVal.textContent    = sliderControl.value + '%';
     updateRiskChart();
-  });
+    updateCalcMatrix();
+  }
 
-  sliderControl.addEventListener('input', function () {
-    sliderControlVal.textContent = sliderControl.value + '%';
-    updateRiskChart();
-  });
+  sliderImpact.addEventListener('input', onSliderInput);
+  sliderLikelihood.addEventListener('input', onSliderInput);
+  sliderControl.addEventListener('input', onSliderInput);
 
   // --- Chart instance (null until modal is first opened) ---
   var riskCalcChart = null;
 
-  // Calculate scores from the current slider positions
+  // Return text tier for a numeric risk score (0-25 scale)
+  function riskTier(score) {
+    if (score >= 17) return 'Critical';
+    if (score >= 10) return 'High';
+    if (score >= 5)  return 'Medium';
+    return 'Low';
+  }
+
+  // Core risk calculation — pure function, no DOM dependency.
+  // Accepts impact (1-5), likelihood (1-5), controlEffectiveness (0-100).
+  // Returns scores and their text tiers.
+  function calculateRisk(impact, likelihood, controlEffectiveness) {
+    var inherentRisk = impact * likelihood;
+    var residualRisk = inherentRisk * (1 - (controlEffectiveness / 100));
+
+    return {
+      inherentRisk:     inherentRisk,
+      inherentTier:     riskTier(inherentRisk),
+      residualRisk:     residualRisk,
+      residualTier:     riskTier(residualRisk)
+    };
+  }
+
+  // Read current slider positions and run the calculation
   function getRiskScores() {
+    return calculateRisk(
+      parseInt(sliderImpact.value),
+      parseInt(sliderLikelihood.value),
+      parseInt(sliderControl.value)
+    );
+  }
+
+  // ==========================================================
+  // 9. INTERACTIVE 5×5 MATRIX — highlight + score readout
+  // ==========================================================
+
+  var calcCells = document.querySelectorAll('#calcMatrix .calc-cell');
+
+  // Score readout elements
+  var inherentScoreText = document.getElementById('inherentScoreText');
+  var inherentTierText  = document.getElementById('inherentTierText');
+  var residualScoreText = document.getElementById('residualScoreText');
+  var residualTierText  = document.getElementById('residualTierText');
+
+  // Paint every cell with its static tier colour and score label once
+  calcCells.forEach(function (cell) {
+    var i = parseInt(cell.getAttribute('data-i'));
+    var l = parseInt(cell.getAttribute('data-l'));
+    var score = i * l;
+    var tier  = riskTier(score);
+
+    cell.textContent = score;
+    cell.classList.add('tier-' + tier.toLowerCase());
+  });
+
+  // Find the residual cell: the grid cell whose score is closest to residualRisk
+  function nearestCell(residualRisk) {
+    var best = null;
+    var bestDiff = Infinity;
+    calcCells.forEach(function (cell) {
+      var i = parseInt(cell.getAttribute('data-i'));
+      var l = parseInt(cell.getAttribute('data-l'));
+      var diff = Math.abs(i * l - residualRisk);
+      if (diff < bestDiff) { bestDiff = diff; best = cell; }
+    });
+    return best;
+  }
+
+  function updateCalcMatrix() {
+    var scores = getRiskScores();
+
+    // Clear previous highlights
+    calcCells.forEach(function (cell) {
+      cell.classList.remove('mark-inherent', 'mark-residual');
+    });
+
+    // Highlight inherent cell (exact match — impact × likelihood)
     var impact     = parseInt(sliderImpact.value);
     var likelihood = parseInt(sliderLikelihood.value);
-    var control    = parseInt(sliderControl.value) / 100;
+    var inherentCell = document.querySelector(
+      '.calc-cell[data-i="' + impact + '"][data-l="' + likelihood + '"]'
+    );
+    if (inherentCell) inherentCell.classList.add('mark-inherent');
 
-    var inherent = impact * likelihood;           // max 25
-    var residual = inherent * (1 - control);      // reduced by control %
+    // Highlight residual cell (nearest grid position)
+    var residualCell = nearestCell(scores.residualRisk);
+    if (residualCell) residualCell.classList.add('mark-residual');
 
-    return { inherent: inherent, residual: residual };
+    // Update score readout
+    inherentScoreText.textContent = scores.inherentRisk;
+    inherentTierText.textContent  = scores.inherentTier;
+    residualScoreText.textContent = scores.residualRisk % 1 === 0
+      ? scores.residualRisk
+      : scores.residualRisk.toFixed(1);
+    residualTierText.textContent  = scores.residualTier;
   }
+
+  // Paint initial state
+  updateCalcMatrix();
+
 
   // Called from slider listeners — only touches data, never creates the chart
   function updateRiskChart() {
     if (!riskCalcChart) return;                   // chart not built yet
 
     var scores = getRiskScores();
-    riskCalcChart.data.datasets[0].data = [scores.inherent, scores.residual];
+    riskCalcChart.data.datasets[0].data = [scores.inherentRisk, scores.residualRisk];
     riskCalcChart.update();
   }
 
@@ -342,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // If the chart already exists, just resize it to match the now-visible
     // container dimensions and push in the latest data.
     if (riskCalcChart) {
-      riskCalcChart.data.datasets[0].data = [scores.inherent, scores.residual];
+      riskCalcChart.data.datasets[0].data = [scores.inherentRisk, scores.residualRisk];
       riskCalcChart.resize();
       riskCalcChart.update();
       return;
@@ -357,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Inherent Risk', 'Residual Risk'],
         datasets: [{
           label: 'Risk Score',
-          data: [scores.inherent, scores.residual],
+          data: [scores.inherentRisk, scores.residualRisk],
           backgroundColor: [
             'rgba(220, 53, 69, 0.85)',   // red  — inherent
             'rgba(60, 120, 216, 0.85)'   // blue — residual

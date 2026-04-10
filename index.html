@@ -211,124 +211,7 @@
       <button class="modal-close" id="riskModalClose" aria-label="Close modal">&times;</button>
 
       <h2 class="modal-title" id="riskModalTitle">📊 Risk Management Dashboard</h2>
-      <p class="modal-subtitle">Sample inherent &amp; residual risk analysis</p>
-
-      <!-- Inherent Risk Chart -->
-      <h3 class="modal-section-heading">Inherent Risk Levels</h3>
-      <p class="chart-description">Risk levels before any controls or mitigations are applied.</p>
-      <div class="risk-chart">
-        <div class="risk-bar-row">
-          <span class="risk-label">Cybersecurity Breach</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-critical" style="width: 92%"><span>92</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Regulatory Non-Compliance</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-high" style="width: 78%"><span>78</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Supply Chain Disruption</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-high" style="width: 71%"><span>71</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Key Personnel Loss</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-medium" style="width: 55%"><span>55</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Market Volatility</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-medium" style="width: 48%"><span>48</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Natural Disaster</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-low" style="width: 30%"><span>30</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Residual Risk Chart -->
-      <h3 class="modal-section-heading">Residual Risk Levels</h3>
-      <p class="chart-description">Risk levels after controls and mitigations are in place.</p>
-      <div class="risk-chart">
-        <div class="risk-bar-row">
-          <span class="risk-label">Cybersecurity Breach</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-medium" style="width: 40%"><span>40</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Regulatory Non-Compliance</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-low" style="width: 25%"><span>25</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Supply Chain Disruption</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-medium" style="width: 38%"><span>38</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Key Personnel Loss</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-low" style="width: 22%"><span>22</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Market Volatility</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-low" style="width: 28%"><span>28</span></div>
-          </div>
-        </div>
-        <div class="risk-bar-row">
-          <span class="risk-label">Natural Disaster</span>
-          <div class="risk-bar-track">
-            <div class="risk-bar risk-low" style="width: 15%"><span>15</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Risk Matrix -->
-      <h3 class="modal-section-heading">Risk Heat Map</h3>
-      <div class="risk-matrix">
-        <div class="matrix-y-label">Likelihood</div>
-        <div class="matrix-grid">
-          <div class="matrix-cell risk-bg-medium">Med</div>
-          <div class="matrix-cell risk-bg-high">High</div>
-          <div class="matrix-cell risk-bg-critical">Crit</div>
-          <div class="matrix-cell risk-bg-critical risk-has-dot">Crit</div>
-          <div class="matrix-cell risk-bg-low">Low</div>
-          <div class="matrix-cell risk-bg-medium risk-has-dot">Med</div>
-          <div class="matrix-cell risk-bg-high risk-has-dot">High</div>
-          <div class="matrix-cell risk-bg-critical">Crit</div>
-          <div class="matrix-cell risk-bg-low">Low</div>
-          <div class="matrix-cell risk-bg-low risk-has-dot">Low</div>
-          <div class="matrix-cell risk-bg-medium">Med</div>
-          <div class="matrix-cell risk-bg-high risk-has-dot">High</div>
-          <div class="matrix-cell risk-bg-low">Low</div>
-          <div class="matrix-cell risk-bg-low">Low</div>
-          <div class="matrix-cell risk-bg-low">Low</div>
-          <div class="matrix-cell risk-bg-medium">Med</div>
-        </div>
-        <div class="matrix-x-label">Impact</div>
-      </div>
-
-      <!-- Legend -->
-      <div class="risk-legend">
-        <div class="legend-item"><span class="legend-swatch risk-bg-critical"></span> Critical (76–100)</div>
-        <div class="legend-item"><span class="legend-swatch risk-bg-high"></span> High (51–75)</div>
-        <div class="legend-item"><span class="legend-swatch risk-bg-medium"></span> Medium (26–50)</div>
-        <div class="legend-item"><span class="legend-swatch risk-bg-low"></span> Low (0–25)</div>
-      </div>
+      <p class="modal-subtitle">Interactive inherent &amp; residual risk analysis</p>
 
       <!-- Interactive Risk Calculator -->
       <h3 class="modal-section-heading">Risk Calculator</h3>
@@ -357,6 +240,61 @@
             <input type="range" id="sliderControl" min="0" max="100" value="50" step="1" />
             <span class="slider-value" id="sliderControlVal">50%</span>
           </div>
+        </div>
+      </div>
+
+      <!-- 5×5 Interactive Risk Matrix -->
+      <h3 class="modal-section-heading">Interactive Risk Matrix</h3>
+      <p class="chart-description">The grid highlights your inherent position (red) and residual position (blue) in real time.</p>
+
+      <div class="calc-matrix-wrap">
+        <span class="calc-matrix-y">Likelihood</span>
+        <div class="calc-matrix" id="calcMatrix">
+          <!-- Row 5 (likelihood = 5, top row) -->
+          <div class="calc-cell" data-l="5" data-i="1"></div>
+          <div class="calc-cell" data-l="5" data-i="2"></div>
+          <div class="calc-cell" data-l="5" data-i="3"></div>
+          <div class="calc-cell" data-l="5" data-i="4"></div>
+          <div class="calc-cell" data-l="5" data-i="5"></div>
+          <!-- Row 4 -->
+          <div class="calc-cell" data-l="4" data-i="1"></div>
+          <div class="calc-cell" data-l="4" data-i="2"></div>
+          <div class="calc-cell" data-l="4" data-i="3"></div>
+          <div class="calc-cell" data-l="4" data-i="4"></div>
+          <div class="calc-cell" data-l="4" data-i="5"></div>
+          <!-- Row 3 -->
+          <div class="calc-cell" data-l="3" data-i="1"></div>
+          <div class="calc-cell" data-l="3" data-i="2"></div>
+          <div class="calc-cell" data-l="3" data-i="3"></div>
+          <div class="calc-cell" data-l="3" data-i="4"></div>
+          <div class="calc-cell" data-l="3" data-i="5"></div>
+          <!-- Row 2 -->
+          <div class="calc-cell" data-l="2" data-i="1"></div>
+          <div class="calc-cell" data-l="2" data-i="2"></div>
+          <div class="calc-cell" data-l="2" data-i="3"></div>
+          <div class="calc-cell" data-l="2" data-i="4"></div>
+          <div class="calc-cell" data-l="2" data-i="5"></div>
+          <!-- Row 1 (likelihood = 1, bottom row) -->
+          <div class="calc-cell" data-l="1" data-i="1"></div>
+          <div class="calc-cell" data-l="1" data-i="2"></div>
+          <div class="calc-cell" data-l="1" data-i="3"></div>
+          <div class="calc-cell" data-l="1" data-i="4"></div>
+          <div class="calc-cell" data-l="1" data-i="5"></div>
+        </div>
+        <span class="calc-matrix-x">Impact</span>
+      </div>
+
+      <!-- Score readout -->
+      <div class="score-readout" id="scoreReadout">
+        <div class="readout-item readout-inherent">
+          <span class="readout-label">Inherent Risk:</span>
+          <span class="readout-score" id="inherentScoreText">9</span>
+          <span class="readout-tier" id="inherentTierText">Medium</span>
+        </div>
+        <div class="readout-item readout-residual">
+          <span class="readout-label">Residual Risk:</span>
+          <span class="readout-score" id="residualScoreText">4.5</span>
+          <span class="readout-tier" id="residualTierText">Low</span>
         </div>
       </div>
 
