@@ -22,9 +22,7 @@
     <nav class="navbar">
       <a href="#hero" class="nav-logo">The Hub</a>
       <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
@@ -47,20 +45,9 @@
     <div class="container">
       <h2 class="section-title">About This Site</h2>
       <div class="about-content">
-        <p>
-          This site is a dedicated workspace for building real web projects — equal
-          parts workshop and living portfolio. Every project here was built from the
-          ground up to solve a problem, explore an idea, or push into new territory.
-        </p>
-        <p>
-          The goal is simple: build consistently, experiment regularly, and turn ideas
-          into working experiences. Over time this collection will grow to include
-          interactive tools, data visualizations, galleries, and mini-applications.
-        </p>
-        <p>
-          Progress is the point. Each new project is proof that showing up and shipping
-          work compounds into something worth sharing. This is the record of that momentum.
-        </p>
+        <p>This site is a dedicated workspace for building real web projects — equal parts workshop and living portfolio. Every project here was built from the ground up to solve a problem, explore an idea, or push into new territory.</p>
+        <p>The goal is simple: build consistently, experiment regularly, and turn ideas into working experiences. Over time this collection will grow to include interactive tools, data visualizations, galleries, and mini-applications.</p>
+        <p>Progress is the point. Each new project is proof that showing up and shipping work compounds into something worth sharing. This is the record of that momentum.</p>
       </div>
     </div>
   </section>
@@ -69,10 +56,8 @@
     <div class="container">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Click a card to learn more (coming soon!)</p>
-
       <div class="projects-grid">
 
-        <!-- Rockville card — opens modal -->
         <div class="project-card" id="rockvilleCard" role="button" tabindex="0">
           <div class="card-icon">🤘🔥</div>
           <h3>Rockville '26</h3>
@@ -106,38 +91,21 @@
   </section>
 
 
-  <!-- ============================================================
-       ROCKVILLE '26 MODAL
-  ============================================================ -->
+  <!-- ROCKVILLE MODAL -->
   <div class="modal-overlay" id="rockvilleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
 
-      <!-- Title -->
       <h2 class="modal-title" id="modalTitle">🤘 Rockville '26 🔥</h2>
       <p class="modal-subtitle">May 7 – 10, 2026 · Daytona International Speedway</p>
 
-      <!-- Countdown -->
       <div class="countdown" id="countdown">
-        <div class="countdown-unit">
-          <span class="countdown-number" id="cdDays">--</span>
-          <span class="countdown-label">Days</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="cdHours">--</span>
-          <span class="countdown-label">Hours</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="cdMins">--</span>
-          <span class="countdown-label">Minutes</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="cdSecs">--</span>
-          <span class="countdown-label">Seconds</span>
-        </div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdDays">--</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdHours">--</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdMins">--</span><span class="countdown-label">Minutes</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdSecs">--</span><span class="countdown-label">Seconds</span></div>
       </div>
 
-      <!-- Bands & Set Times -->
       <h3 class="modal-section-heading">Bands &amp; Headliners by Day</h3>
       <div class="set-times">
         <div class="set-day">
@@ -178,34 +146,19 @@
         </div>
       </div>
 
-      <!-- Photo Gallery -->
       <h3 class="modal-section-heading">Gallery</h3>
       <div class="gallery">
-        <div class="gallery-item">
-          <div class="gallery-placeholder">🎸</div>
-          <p class="gallery-caption">Main Stage</p>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-placeholder">🏁</div>
-          <p class="gallery-caption">Daytona Speedway</p>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-placeholder">🔥</div>
-          <p class="gallery-caption">Pyro Show</p>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-placeholder">🤘</div>
-          <p class="gallery-caption">The Crowd</p>
-        </div>
+        <div class="gallery-item"><div class="gallery-placeholder">🎸</div><p class="gallery-caption">Main Stage</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🏁</div><p class="gallery-caption">Daytona Speedway</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🔥</div><p class="gallery-caption">Pyro Show</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🤘</div><p class="gallery-caption">The Crowd</p></div>
       </div>
 
     </div>
   </div>
 
 
-  <!-- ============================================================
-       RISK MANAGEMENT MODAL
-  ============================================================ -->
+  <!-- RISK MODAL -->
   <div class="modal-overlay" id="riskModal" role="dialog" aria-modal="true" aria-labelledby="riskModalTitle">
     <div class="modal">
       <button class="modal-close" id="riskModalClose" aria-label="Close modal">&times;</button>
@@ -213,7 +166,6 @@
       <h2 class="modal-title" id="riskModalTitle">📊 Risk Management Dashboard</h2>
       <p class="modal-subtitle">Interactive inherent &amp; residual risk analysis</p>
 
-      <!-- Interactive Risk Calculator -->
       <h3 class="modal-section-heading">Risk Calculator</h3>
       <p class="chart-description">Adjust the sliders to see how controls reduce inherent risk.</p>
 
@@ -225,7 +177,6 @@
             <span class="slider-value" id="sliderImpactVal">3</span>
           </div>
         </div>
-
         <div class="slider-group">
           <label for="sliderLikelihood">Inherent Likelihood</label>
           <div class="slider-row">
@@ -233,7 +184,6 @@
             <span class="slider-value" id="sliderLikelihoodVal">3</span>
           </div>
         </div>
-
         <div class="slider-group">
           <label for="sliderControl">Control Effectiveness</label>
           <div class="slider-row">
@@ -243,48 +193,21 @@
         </div>
       </div>
 
-      <!-- 5×5 Interactive Risk Matrix -->
       <h3 class="modal-section-heading">Interactive Risk Matrix</h3>
       <p class="chart-description">The grid highlights your inherent position (red) and residual position (blue) in real time.</p>
 
       <div class="calc-matrix-wrap">
         <span class="calc-matrix-y">Likelihood</span>
         <div class="calc-matrix" id="calcMatrix">
-          <!-- Row 5 (likelihood = 5, top row) -->
-          <div class="calc-cell" data-l="5" data-i="1"></div>
-          <div class="calc-cell" data-l="5" data-i="2"></div>
-          <div class="calc-cell" data-l="5" data-i="3"></div>
-          <div class="calc-cell" data-l="5" data-i="4"></div>
-          <div class="calc-cell" data-l="5" data-i="5"></div>
-          <!-- Row 4 -->
-          <div class="calc-cell" data-l="4" data-i="1"></div>
-          <div class="calc-cell" data-l="4" data-i="2"></div>
-          <div class="calc-cell" data-l="4" data-i="3"></div>
-          <div class="calc-cell" data-l="4" data-i="4"></div>
-          <div class="calc-cell" data-l="4" data-i="5"></div>
-          <!-- Row 3 -->
-          <div class="calc-cell" data-l="3" data-i="1"></div>
-          <div class="calc-cell" data-l="3" data-i="2"></div>
-          <div class="calc-cell" data-l="3" data-i="3"></div>
-          <div class="calc-cell" data-l="3" data-i="4"></div>
-          <div class="calc-cell" data-l="3" data-i="5"></div>
-          <!-- Row 2 -->
-          <div class="calc-cell" data-l="2" data-i="1"></div>
-          <div class="calc-cell" data-l="2" data-i="2"></div>
-          <div class="calc-cell" data-l="2" data-i="3"></div>
-          <div class="calc-cell" data-l="2" data-i="4"></div>
-          <div class="calc-cell" data-l="2" data-i="5"></div>
-          <!-- Row 1 (likelihood = 1, bottom row) -->
-          <div class="calc-cell" data-l="1" data-i="1"></div>
-          <div class="calc-cell" data-l="1" data-i="2"></div>
-          <div class="calc-cell" data-l="1" data-i="3"></div>
-          <div class="calc-cell" data-l="1" data-i="4"></div>
-          <div class="calc-cell" data-l="1" data-i="5"></div>
+          <div class="calc-cell" data-l="5" data-i="1"></div><div class="calc-cell" data-l="5" data-i="2"></div><div class="calc-cell" data-l="5" data-i="3"></div><div class="calc-cell" data-l="5" data-i="4"></div><div class="calc-cell" data-l="5" data-i="5"></div>
+          <div class="calc-cell" data-l="4" data-i="1"></div><div class="calc-cell" data-l="4" data-i="2"></div><div class="calc-cell" data-l="4" data-i="3"></div><div class="calc-cell" data-l="4" data-i="4"></div><div class="calc-cell" data-l="4" data-i="5"></div>
+          <div class="calc-cell" data-l="3" data-i="1"></div><div class="calc-cell" data-l="3" data-i="2"></div><div class="calc-cell" data-l="3" data-i="3"></div><div class="calc-cell" data-l="3" data-i="4"></div><div class="calc-cell" data-l="3" data-i="5"></div>
+          <div class="calc-cell" data-l="2" data-i="1"></div><div class="calc-cell" data-l="2" data-i="2"></div><div class="calc-cell" data-l="2" data-i="3"></div><div class="calc-cell" data-l="2" data-i="4"></div><div class="calc-cell" data-l="2" data-i="5"></div>
+          <div class="calc-cell" data-l="1" data-i="1"></div><div class="calc-cell" data-l="1" data-i="2"></div><div class="calc-cell" data-l="1" data-i="3"></div><div class="calc-cell" data-l="1" data-i="4"></div><div class="calc-cell" data-l="1" data-i="5"></div>
         </div>
         <span class="calc-matrix-x">Impact</span>
       </div>
 
-      <!-- Score readout -->
       <div class="score-readout" id="scoreReadout">
         <div class="readout-item readout-inherent">
           <span class="readout-label">Inherent Risk:</span>
@@ -299,7 +222,7 @@
       </div>
 
       <div class="risk-canvas-wrapper">
-        <canvas id="riskCalcChart" width="600" height="300"></canvas>
+        <canvas id="riskCalcChart" width="600" height="280"></canvas>
       </div>
 
     </div>
@@ -312,10 +235,7 @@
       <div class="features-placeholder">
         <p class="features-label">🔬 Coming Soon</p>
         <p>Future charts, forms, and mini-apps will appear here.</p>
-        <p class="features-note">
-          This space is reserved for interactive JavaScript experiments —
-          live calculators, data visualizations, and more.
-        </p>
+        <p class="features-note">This space is reserved for interactive JavaScript experiments — live calculators, data visualizations, and more.</p>
       </div>
     </div>
   </section>

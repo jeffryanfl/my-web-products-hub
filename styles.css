@@ -1,23 +1,26 @@
 /* ============================================================
-   STYLES.CSS — Web Products Hub (Dark Theme)
+   STYLES.CSS — Web Products Hub (Apple Design System)
 
    TABLE OF CONTENTS:
-   1. CSS Variables
-   2. Reset & Base Styles
-   3. Typography
-   4. Layout Utilities
-   5. Navigation
-   6. Hero Section
-   7. About Section
-   8. Projects Grid & Cards
-   9. Features Section
-   10. Contact Section
-   11. Footer
-   12. Modal (Rockville)
-   13. Risk Management Interactive Calculator
-   14. Responsive / Mobile Breakpoints
-   15. Reduced Motion
-   16. Noscript Fallback
+   1.  CSS Variables
+   2.  Reset & Base Styles
+   3.  Typography
+   4.  Layout Utilities
+   5.  Buttons
+   6.  Navigation
+   7.  Hero Section
+   8.  About Section
+   9.  Projects Grid & Cards
+   10. Features Section
+   11. Contact Section
+   12. Footer
+   13. Modal Base
+   14. Countdown
+   15. Set Times & Gallery
+   16. Risk Modal — Interactive Calculator
+   17. Noscript Fallback
+   18. Responsive / Mobile Breakpoints
+   19. Reduced Motion
 ============================================================ */
 
 
@@ -25,25 +28,36 @@
    1. CSS VARIABLES
 ============================================================ */
 :root {
-  --color-bg:        #1a2533;
-  --color-navy:      #1e3a5f;
-  --color-accent:    #7c6f9e;
-  --color-white:     #e8ecf1;
-  --color-light:     #243347;
-  --color-text:      #cdd5e0;
-  --color-muted:     #8a95a5;
-  --color-border:    #2e4562;
+  /* Apple color palette */
+  --color-bg:           #f5f5f7;   /* Apple page background */
+  --color-surface:      #ffffff;   /* Cards, modals, nav */
+  --color-surface-alt:  #fbfbfd;   /* Subtle section alt */
+  --color-text:         #1d1d1f;   /* Apple primary text */
+  --color-muted:        #6e6e73;   /* Apple secondary text */
+  --color-border:       #d2d2d7;   /* Apple divider */
+  --color-border-light: #e8e8ed;   /* Lighter divider */
+  --color-accent:       #0071e3;   /* Apple blue */
+  --color-accent-dark:  #0077ed;   /* Hover blue */
+  --color-red:          #ff3b30;   /* Apple red */
+  --color-green:        #34c759;   /* Apple green */
+  --color-footer-bg:    #f5f5f7;
+  --color-modal-bg:     #ffffff;
+  --color-nav-bg:       rgba(255,255,255,0.85);
 
-  --color-red:       #ff4444;
-  --color-red-dark:  #c0392b;
-  --color-modal-bg:  #141d2a;
-  --color-footer-bg: #111c28;
+  /* Apple typography */
+  --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 
-  --font-main:       'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --max-width:       1100px;
+  --max-width:       1080px;
   --section-padding: 5rem 1.5rem;
-  --radius:          10px;
-  --transition:      0.25s ease;
+  --radius:          18px;        /* Apple card radius */
+  --radius-sm:       12px;
+  --radius-btn:      980px;       /* Apple pill buttons */
+  --transition:      0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-card:       0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-card-hover: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-modal:      0 24px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
 }
 
 
@@ -56,53 +70,52 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.7;
-  font-size: 16px;
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
+a   { text-decoration: none; color: inherit; }
+ul  { list-style: none; }
+img { max-width: 100%; display: block; }
 
 
 /* ============================================================
-   3. TYPOGRAPHY
+   3. TYPOGRAPHY — Apple scale
 ============================================================ */
-h1, h2, h3 {
-  color: var(--color-white);
-  line-height: 1.25;
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  line-height: 1.1;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
-h3 { font-size: 1.2rem; }
-
-p {
-  margin-bottom: 1rem;
-  max-width: 65ch;
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  line-height: 1.15;
 }
 
-.highlight {
-  color: var(--color-accent);
+h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
 }
+
+p { margin-bottom: 1rem; max-width: 65ch; }
+
+.highlight { color: var(--color-accent); }
 
 
 /* ============================================================
@@ -114,42 +127,45 @@ p {
   padding: 0 1.5rem;
 }
 
-.section {
-  padding: var(--section-padding);
-}
+.section { padding: var(--section-padding); }
 
 .section-title {
   text-align: center;
-  margin-bottom: 0.75rem;
-  position: relative;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0;
 }
 
 .section-title::after {
   content: '';
   display: block;
-  width: 60px;
-  height: 4px;
-  background-color: var(--color-accent);
-  margin: 0.5rem auto 0;
+  width: 40px;
+  height: 3px;
+  background: var(--color-accent);
   border-radius: 2px;
+  margin: 0.6rem auto 0;
 }
 
 .section-subtitle {
   text-align: center;
   color: var(--color-muted);
+  font-size: 0.95rem;
   margin-bottom: 2.5rem;
 }
 
+
+/* ============================================================
+   5. BUTTONS — Apple pill style
+============================================================ */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-btn);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
-  transition: background-color var(--transition), transform var(--transition);
-  border: 2px solid transparent;
+  transition: background-color var(--transition), opacity var(--transition), transform var(--transition);
+  border: none;
+  letter-spacing: 0;
 }
 
 .btn-primary {
@@ -158,37 +174,40 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: #665a88;
-  transform: translateY(-2px);
+  background-color: var(--color-accent-dark);
+  transform: none;
+  opacity: 0.92;
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-white);
-  border-color: var(--color-white);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-white);
-  color: var(--color-bg);
+  background-color: var(--color-accent);
+  color: #ffffff;
 }
 
 
 /* ============================================================
-   5. NAVIGATION
+   6. NAVIGATION — frosted Apple nav
 ============================================================ */
 .site-header {
-  background-color: var(--color-navy);
+  background-color: var(--color-nav-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .navbar {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -196,32 +215,26 @@ p {
 }
 
 .nav-logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.5px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
+.nav-links { display: flex; gap: 1.75rem; }
 
 .nav-links a {
-  color: rgba(255,255,255,0.85);
-  font-size: 0.95rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
   transition: color var(--transition);
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: #ffffff;
-}
+.nav-links a:hover { color: var(--color-text); }
 
 .nav-links a.active {
-  font-weight: 700;
-  border-bottom: 2px solid var(--color-accent);
-  padding-bottom: 2px;
+  color: var(--color-text);
+  font-weight: 500;
 }
 
 .nav-toggle {
@@ -236,414 +249,395 @@ p {
 
 .nav-toggle span {
   display: block;
-  width: 26px;
-  height: 2px;
-  background-color: #ffffff;
+  width: 22px;
+  height: 1.5px;
+  background-color: var(--color-text);
   border-radius: 2px;
   transition: var(--transition);
 }
 
 
 /* ============================================================
-   6. HERO SECTION
+   7. HERO — Apple white hero with big bold headline
 ============================================================ */
 .hero-section {
-  min-height: 90vh;
+  min-height: 88vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 4rem 1.5rem;
-  background: linear-gradient(
-    160deg,
-    var(--color-bg) 60%,
-    #1e3040 100%
-  );
+  background-color: var(--color-surface);
 }
 
-.hero-content {
-  max-width: 700px;
-}
+.hero-content { max-width: 680px; }
 
 .tagline {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--color-muted);
-  margin: 1rem 0 2rem;
+  margin: 1.1rem 0 2.2rem;
   max-width: 100%;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 
 /* ============================================================
-   7. ABOUT SECTION
+   8. ABOUT SECTION
 ============================================================ */
-.about-section {
-  background-color: var(--color-light);
-}
+.about-section { background-color: var(--color-bg); }
 
 .about-content {
-  max-width: 720px;
+  max-width: 680px;
   margin: 2rem auto 0;
 }
 
 .about-content p {
   max-width: 100%;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
 
 /* ============================================================
-   8. PROJECTS GRID & CARDS
+   9. PROJECTS GRID & CARDS — Apple card style
 ============================================================ */
-.projects-section {
-  background-color: var(--color-bg);
-}
+.projects-section { background-color: var(--color-surface-alt); }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.75rem;
+  gap: 1.25rem;
   margin-top: 2rem;
 }
 
 .project-card {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius);
-  padding: 1.75rem 1.5rem;
+  padding: 2rem 1.75rem;
   transition: transform var(--transition), box-shadow var(--transition);
   cursor: pointer;
+  box-shadow: var(--shadow-card);
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .card-icon {
   font-size: 2rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
-.project-card h3 {
-  margin-bottom: 0.5rem;
-}
+.project-card h3 { margin-bottom: 0.4rem; }
 
 .project-card p {
   font-size: 0.9rem;
   color: var(--color-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.55;
 }
 
 .card-tag {
   display: inline-block;
-  background-color: var(--color-navy);
-  color: var(--color-white);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
+  background-color: var(--color-bg);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.65rem;
   border-radius: 20px;
+  border: 1px solid var(--color-border);
+  letter-spacing: 0.01em;
 }
 
 
 /* ============================================================
-   9. INTERACTIVE FEATURES SECTION
+   10. FEATURES SECTION
 ============================================================ */
-.features-section {
-  background-color: var(--color-navy);
-  color: #ffffff;
-}
-
-.features-section .section-title {
-  color: #ffffff;
-}
+.features-section { background-color: var(--color-bg); }
 
 .features-placeholder {
-  max-width: 600px;
+  max-width: 560px;
   margin: 2rem auto;
   text-align: center;
-  border: 2px dashed rgba(255,255,255,0.25);
+  border: 1.5px dashed var(--color-border);
   border-radius: var(--radius);
   padding: 3rem 2rem;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
 }
 
-.features-placeholder p {
-  max-width: 100%;
-  color: rgba(255,255,255,0.85);
-}
+.features-placeholder p { max-width: 100%; color: var(--color-muted); }
 
 .features-placeholder .features-label {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
 .features-placeholder .features-note {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+  color: #adadb8;
   margin-top: 0.5rem;
 }
 
 
 /* ============================================================
-   10. CONTACT SECTION
+   11. CONTACT SECTION
 ============================================================ */
 .contact-section {
-  background-color: var(--color-light);
+  background-color: var(--color-surface);
   text-align: center;
 }
 
 .contact-section p {
   max-width: 100%;
   color: var(--color-muted);
-  margin: 1rem auto 2rem;
+  margin: 0.85rem auto 2rem;
 }
 
 .contact-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.85rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 
 /* ============================================================
-   11. FOOTER
+   12. FOOTER
 ============================================================ */
 .site-footer {
   background-color: var(--color-footer-bg);
-  color: rgba(255,255,255,0.5);
+  border-top: 1px solid var(--color-border-light);
   text-align: center;
-  padding: 1.75rem 1rem;
-  font-size: 0.9rem;
-}
-
-.site-footer strong {
-  color: #ffffff;
+  padding: 1.5rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0;
 }
 
 
 /* ============================================================
-   12. MODAL — ROCKVILLE '26
+   13. MODAL BASE
 ============================================================ */
-
-/* Dark overlay behind modal */
 .modal-overlay {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  inset: 0;
+  background-color: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 200;
-  justify-content: center;
   align-items: flex-start;
-  padding: 3rem 1rem;
+  justify-content: center;
   overflow-y: auto;
+  padding: 2.5rem 1rem;
 }
 
-.modal-overlay.active {
-  display: flex;
-}
+.modal-overlay.active { display: flex; }
 
-/* The modal box itself */
 .modal {
   background-color: var(--color-modal-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  max-width: 720px;
+  border-radius: 20px;
+  padding: 2.5rem 2.25rem;
+  max-width: 700px;
   width: 100%;
-  padding: 2.5rem 2rem;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  margin: auto;
+  box-shadow: var(--shadow-modal);
 }
 
-/* Close button */
 .modal-close {
   position: absolute;
   top: 1rem;
-  right: 1.25rem;
-  background: none;
+  right: 1rem;
+  background: var(--color-bg);
   border: none;
   color: var(--color-muted);
-  font-size: 2rem;
+  font-size: 1.25rem;
   cursor: pointer;
   line-height: 1;
-  transition: color var(--transition);
+  transition: background-color var(--transition), color var(--transition);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
-  color: var(--color-red);
+  background: var(--color-border-light);
+  color: var(--color-text);
 }
 
-/* Modal title */
 .modal-title {
-  font-size: 2rem;
-  text-align: center;
-  color: var(--color-white);
-  margin-bottom: 0.25rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+  color: var(--color-text);
 }
 
 .modal-subtitle {
-  text-align: center;
   color: var(--color-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 2rem;
 }
 
-/* Section headings inside modal */
 .modal-section-heading {
-  color: var(--color-red-dark);
-  font-size: 1.15rem;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--color-border);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin: 2rem 0 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: 0.5rem;
 }
 
-/* ---- Countdown ---- */
+
+/* ============================================================
+   14. COUNTDOWN
+============================================================ */
 .countdown {
   display: flex;
+  gap: 0.85rem;
   justify-content: center;
-  gap: 1.5rem;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
 .countdown-unit {
   text-align: center;
-  background-color: var(--color-navy);
-  border-radius: 10px;
-  padding: 1rem 1.25rem;
-  min-width: 80px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  min-width: 76px;
 }
 
 .countdown-number {
   display: block;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-red);
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
 }
 
 .countdown-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   color: var(--color-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 0.25rem;
-}
-
-/* ---- Set Times ---- */
-.set-times {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1.25rem;
-}
-
-.set-day {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.set-day h4 {
-  color: var(--color-red);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.75rem;
-}
-
-.set-day ul {
-  list-style: none;
-}
-
-.set-day li {
-  font-size: 0.85rem;
-  color: var(--color-text);
-  padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.set-day li:last-child {
-  border-bottom: none;
-}
-
-.band-time {
-  color: var(--color-muted);
-  font-size: 0.75rem;
-  margin-right: 0.5rem;
-}
-
-/* ---- Gallery ---- */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-item {
-  text-align: center;
-}
-
-.gallery-placeholder {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-}
-
-.gallery-caption {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  margin-top: 0.5rem;
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
 }
 
 
 /* ============================================================
-   13. RISK MANAGEMENT MODAL — Interactive Calculator
+   15. SET TIMES & GALLERY
 ============================================================ */
+.set-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 1rem;
+}
 
+.set-day {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.set-day h4 {
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.set-day ul { list-style: none; }
+
+.set-day li {
+  font-size: 0.83rem;
+  color: var(--color-text);
+  padding: 0.28rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.set-day li:last-child { border-bottom: none; }
+
+.band-time {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  margin-right: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.85rem;
+}
+
+.gallery-item { text-align: center; }
+
+.gallery-placeholder {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+
+.gallery-caption {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-top: 0.4rem;
+}
+
+
+/* ============================================================
+   16. RISK MODAL — Interactive Calculator
+============================================================ */
 .chart-description {
   font-size: 0.85rem;
   color: var(--color-muted);
   margin-bottom: 1rem;
 }
 
-/* --- Sliders --- */
-.risk-sliders {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  margin: 1.5rem 0;
-}
+.risk-sliders { display: flex; flex-direction: column; gap: 1.1rem; margin: 1.25rem 0; }
 
 .slider-group label {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   font-weight: 600;
-  color: var(--color-white);
-  margin-bottom: 0.4rem;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
 }
 
-.slider-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
+.slider-row { display: flex; align-items: center; gap: 0.75rem; }
 
 .slider-row input[type="range"] {
   flex: 1;
   -webkit-appearance: none;
   appearance: none;
-  height: 6px;
+  height: 4px;
   background: var(--color-border);
-  border-radius: 3px;
+  border-radius: 2px;
   outline: none;
   cursor: pointer;
 }
@@ -651,47 +645,49 @@ p {
 .slider-row input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--color-accent);
   border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
   cursor: pointer;
 }
 
 .slider-row input[type="range"]::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--color-accent);
   border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
   cursor: pointer;
 }
 
 .slider-value {
-  min-width: 36px;
+  min-width: 38px;
   text-align: center;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--color-accent);
 }
 
-/* --- Interactive 5×5 Risk Matrix --- */
+/* 5×5 Risk Matrix */
 .calc-matrix-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  margin: 1.5rem auto;
-  max-width: 380px;
+  gap: 0.3rem;
+  margin: 1.25rem auto;
+  max-width: 360px;
 }
 
 .calc-matrix-y,
 .calc-matrix-x {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 
 .calc-matrix {
@@ -703,113 +699,110 @@ p {
 
 .calc-cell {
   aspect-ratio: 1;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.5);
-  background-color: var(--color-light);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.35);
+  background-color: var(--color-bg);
   border: 2px solid transparent;
   transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
 }
 
-/* Tier-based background colors applied by JS */
-.calc-cell.tier-low      { background-color: #00b894; color: rgba(255,255,255,0.85); }
-.calc-cell.tier-medium   { background-color: #fdcb6e; color: #1a2533; }
-.calc-cell.tier-high     { background-color: #e17055; color: rgba(255,255,255,0.85); }
-.calc-cell.tier-critical { background-color: #d63031; color: rgba(255,255,255,0.85); }
+.calc-cell.tier-low      { background-color: #34c759; color: rgba(255,255,255,0.9); }
+.calc-cell.tier-medium   { background-color: #ff9f0a; color: rgba(255,255,255,0.9); }
+.calc-cell.tier-high     { background-color: #ff6b35; color: rgba(255,255,255,0.9); }
+.calc-cell.tier-critical { background-color: #ff3b30; color: rgba(255,255,255,0.95); }
 
-/* Inherent highlight — red ring */
 .calc-cell.mark-inherent {
-  border-color: rgb(220, 53, 69);
+  border-color: #ff3b30;
   transform: scale(1.12);
   z-index: 2;
-  box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
+  box-shadow: 0 0 10px rgba(255,59,48,0.5);
 }
 
-/* Residual highlight — blue ring */
 .calc-cell.mark-residual {
-  border-color: rgb(60, 120, 216);
+  border-color: #0071e3;
   transform: scale(1.12);
   z-index: 2;
-  box-shadow: 0 0 10px rgba(60, 120, 216, 0.6);
+  box-shadow: 0 0 10px rgba(0,113,227,0.5);
 }
 
-/* When both land on the same cell — split border */
 .calc-cell.mark-inherent.mark-residual {
-  border-image: linear-gradient(135deg, rgb(220,53,69) 50%, rgb(60,120,216) 50%) 1;
+  border-image: linear-gradient(135deg, #ff3b30 50%, #0071e3 50%) 1;
   border-style: solid;
   border-width: 2px;
   border-radius: 0;
-  box-shadow: 0 0 10px rgba(220, 53, 69, 0.4), 0 0 10px rgba(60, 120, 216, 0.4);
+  box-shadow: 0 0 10px rgba(255,59,48,0.35), 0 0 10px rgba(0,113,227,0.35);
 }
 
-/* --- Score readout --- */
+/* Score readout */
 .score-readout {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin: 1.5rem 0 0.5rem;
+  margin: 1.25rem 0 0.5rem;
   flex-wrap: wrap;
 }
 
-.readout-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.readout-label {
-  color: var(--color-muted);
-  font-weight: 600;
-}
-
+.readout-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; }
+.readout-label { color: var(--color-muted); font-weight: 500; }
 .readout-score {
-  font-size: 1.3rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-}
-
-.readout-tier {
-  font-size: 0.78rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  padding: 0.15rem 0.5rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.readout-tier {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.12rem 0.45rem;
   border-radius: 4px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.04em;
 }
 
-/* Inherent readout colors */
-.readout-inherent .readout-score { color: rgb(220, 53, 69); }
-.readout-inherent .readout-tier  { background-color: rgba(220, 53, 69, 0.2); color: rgb(220, 53, 69); }
+.readout-inherent .readout-score { color: #ff3b30; }
+.readout-inherent .readout-tier  { background-color: rgba(255,59,48,0.1); color: #ff3b30; }
+.readout-residual .readout-score { color: #0071e3; }
+.readout-residual .readout-tier  { background-color: rgba(0,113,227,0.1); color: #0071e3; }
 
-/* Residual readout colors */
-.readout-residual .readout-score { color: rgb(60, 120, 216); }
-.readout-residual .readout-tier  { background-color: rgba(60, 120, 216, 0.2); color: rgb(60, 120, 216); }
-
-/* --- Canvas wrapper --- */
 .risk-canvas-wrapper {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
   padding: 1rem;
   position: relative;
-  height: 300px;
+  height: 280px;
 }
 
 
 /* ============================================================
-   14. RESPONSIVE / MOBILE BREAKPOINTS
+   17. NOSCRIPT FALLBACK
+============================================================ */
+.noscript-banner {
+  background-color: var(--color-red);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.no-js .nav-toggle   { display: none !important; }
+.no-js .nav-links    { display: flex !important; }
+.no-js .project-card { cursor: default; }
+
+
+/* ============================================================
+   18. RESPONSIVE / MOBILE BREAKPOINTS
 ============================================================ */
 @media (max-width: 768px) {
 
-  .nav-toggle {
-    display: flex;
-  }
+  .nav-toggle { display: flex; }
 
   .nav-links {
     display: none;
@@ -817,91 +810,39 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--color-navy);
+    background-color: var(--color-surface);
     flex-direction: column;
     gap: 0;
     padding: 0.5rem 0 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border-bottom: 1px solid var(--color-border-light);
   }
 
-  .nav-links.open {
-    display: flex;
-  }
+  .nav-links.open { display: flex; }
 
-  .nav-links li a {
-    display: block;
-    padding: 0.75rem 1.5rem;
-  }
+  .nav-links li a { display: block; padding: 0.75rem 1.5rem; }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+  .projects-grid { grid-template-columns: 1fr; }
 
-  /* Modal responsive */
-  .modal {
-    padding: 2rem 1.25rem;
-  }
+  .modal { padding: 2rem 1.25rem; }
 
-  .countdown {
-    gap: 0.75rem;
-  }
+  .countdown { gap: 0.6rem; }
+  .countdown-unit { min-width: 60px; padding: 0.7rem 0.5rem; }
+  .countdown-number { font-size: 1.5rem; }
 
-  .countdown-unit {
-    min-width: 60px;
-    padding: 0.75rem 0.5rem;
-  }
-
-  .countdown-number {
-    font-size: 1.5rem;
-  }
-
-  .set-times {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr 1fr;
-  }
+  .set-times { grid-template-columns: 1fr 1fr; }
+  .gallery   { grid-template-columns: 1fr 1fr; }
 
 }
 
 
 /* ============================================================
-   15. REDUCED MOTION
+   19. REDUCED MOTION
 ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
-
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-
-/* ============================================================
-   15. NOSCRIPT FALLBACK
-============================================================ */
-.noscript-banner {
-  background-color: var(--color-red);
-  color: #ffffff;
-  text-align: center;
-  padding: 1rem;
-  font-weight: 600;
-}
-
-/* When JS is disabled, always show nav links and hide the toggle */
-.no-js .nav-toggle {
-  display: none !important;
-}
-
-.no-js .nav-links {
-  display: flex !important;
-}
-
-/* Remove pointer cursor from cards when JS is disabled */
-.no-js .project-card {
-  cursor: default;
+  html { scroll-behavior: auto; }
 }
