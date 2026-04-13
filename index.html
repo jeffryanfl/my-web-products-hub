@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A dedicated workspace for building real web projects — workshop, portfolio, and living record of progress." />
+  <meta property="og:title" content="Web Products Hub" />
+  <meta property="og:description" content="A dedicated workspace for building real web projects — workshop, portfolio, and living record of progress." />
+  <meta property="og:type" content="website" />
+  <title>Web Products Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <noscript>
+    <div class="noscript-banner">
+      This site works best with JavaScript enabled. Some interactive features (modal, countdown, navigation toggle) won't be available without it.
+    </div>
+  </noscript>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#hero" class="nav-logo">The Hub</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <h1>Hello</h1>
+      <p class="tagline">Web Learning Projects – April 2026</p>
+      <a href="#projects" class="btn btn-primary">Browse Projects</a>
+    </div>
+  </section>
+
+  <section id="about" class="section about-section">
+    <div class="container">
+      <h2 class="section-title">About This Site</h2>
+      <div class="about-content">
+        <p>This site is a dedicated workspace for building real web projects — equal parts workshop and living portfolio. Every project here was built from the ground up to solve a problem, explore an idea, or push into new territory.</p>
+        <p>The goal is simple: build consistently, experiment regularly, and turn ideas into working experiences. Over time this collection will grow to include interactive tools, data visualizations, galleries, and mini-applications.</p>
+        <p>Progress is the point. Each new project is proof that showing up and shipping work compounds into something worth sharing. This is the record of that momentum.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Click a card to learn more (coming soon!)</p>
+      <div class="projects-grid">
+
+        <div class="project-card" id="rockvilleCard" role="button" tabindex="0">
+          <div class="card-icon">🤘🔥</div>
+          <h3>Rockville '26</h3>
+          <p>Countdown timer and lineup tracker for the Welcome to Rockville festival, May 2026.</p>
+          <span class="card-tag">HTML / CSS</span>
+        </div>
+
+        <div class="project-card" role="button" tabindex="0">
+          <div class="card-icon">✝️📖</div>
+          <h3>NIFB</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">JavaScript</span>
+        </div>
+
+        <div class="project-card" id="riskCard" role="button" tabindex="0">
+          <div class="card-icon">📊</div>
+          <h3>Risk Management</h3>
+          <p>Sample risk dashboard with inherent and residual risk level charts.</p>
+          <span class="card-tag">Charts</span>
+        </div>
+
+        <div class="project-card" role="button" tabindex="0">
+          <div class="card-icon">📝</div>
+          <h3>Project 4</h3>
+          <p>A short description of what this project does will go here.</p>
+          <span class="card-tag">Forms</span>
+        </div>
+
+        <div class="project-card" id="saaspocalypseCard" role="button" tabindex="0">
+          <div class="card-icon">💀📉</div>
+          <h3>SaaSpocalypse 2026</h3>
+          <p>An interactive market analysis report on the structural collapse of generic SaaS, the Build vs. Buy inversion, and why GRC platforms are surviving.</p>
+          <span class="card-tag">Charts</span>
+          <a href="/projects/saaspocalypse.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open Report</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ROCKVILLE MODAL -->
+  <div class="modal-overlay" id="rockvilleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+
+      <h2 class="modal-title" id="modalTitle">🤘 Rockville '26 🔥</h2>
+      <p class="modal-subtitle">May 7 – 10, 2026 · Daytona International Speedway</p>
+
+      <div class="countdown" id="countdown">
+        <div class="countdown-unit"><span class="countdown-number" id="cdDays">--</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdHours">--</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdMins">--</span><span class="countdown-label">Minutes</span></div>
+        <div class="countdown-unit"><span class="countdown-number" id="cdSecs">--</span><span class="countdown-label">Seconds</span></div>
+      </div>
+
+      <h3 class="modal-section-heading">Bands &amp; Headliners by Day</h3>
+      <div class="set-times">
+        <div class="set-day">
+          <h4>Thursday 05/07</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Guns N' Roses</li>
+            <li><span class="band-time">5:15 PM</span> Five Finger Death Punch</li>
+            <li><span class="band-time">3:45 PM</span> Godsmack</li>
+            <li><span class="band-time">2:15 PM</span> Staind</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Friday 05/08</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Foo Fighters</li>
+            <li><span class="band-time">5:15 PM</span> TURNSTILE</li>
+            <li><span class="band-time">3:45 PM</span> The Offspring</li>
+            <li><span class="band-time">2:15 PM</span> Parkway Drive</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Saturday 05/09</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> Bring Me The Horizon</li>
+            <li><span class="band-time">5:15 PM</span> Breaking Benjamin</li>
+            <li><span class="band-time">3:45 PM</span> Motionless In White</li>
+            <li><span class="band-time">2:15 PM</span> Lamb of God</li>
+          </ul>
+        </div>
+        <div class="set-day">
+          <h4>Sunday 05/10</h4>
+          <ul>
+            <li><span class="band-time">7:00 PM</span> My Chemical Romance</li>
+            <li><span class="band-time">5:15 PM</span> A Day To Remember</li>
+            <li><span class="band-time">3:45 PM</span> Rise Against</li>
+            <li><span class="band-time">2:15 PM</span> Yellowcard</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="modal-section-heading">Gallery</h3>
+      <div class="gallery">
+        <div class="gallery-item"><div class="gallery-placeholder">🎸</div><p class="gallery-caption">Main Stage</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🏁</div><p class="gallery-caption">Daytona Speedway</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🔥</div><p class="gallery-caption">Pyro Show</p></div>
+        <div class="gallery-item"><div class="gallery-placeholder">🤘</div><p class="gallery-caption">The Crowd</p></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- RISK MODAL -->
+  <div class="modal-overlay" id="riskModal" role="dialog" aria-modal="true" aria-labelledby="riskModalTitle">
+    <div class="modal">
+      <button class="modal-close" id="riskModalClose" aria-label="Close modal">&times;</button>
+
+      <h2 class="modal-title" id="riskModalTitle">📊 Risk Management Dashboard</h2>
+      <p class="modal-subtitle">Interactive inherent &amp; residual risk analysis</p>
+
+      <h3 class="modal-section-heading">Risk Calculator</h3>
+      <p class="chart-description">Adjust the sliders to see how controls reduce inherent risk.</p>
+
+      <div class="risk-sliders">
+        <div class="slider-group">
+          <label for="sliderImpact">Inherent Impact</label>
+          <div class="slider-row">
+            <input type="range" id="sliderImpact" min="1" max="5" value="3" step="1" />
+            <span class="slider-value" id="sliderImpactVal">3</span>
+          </div>
+        </div>
+        <div class="slider-group">
+          <label for="sliderLikelihood">Inherent Likelihood</label>
+          <div class="slider-row">
+            <input type="range" id="sliderLikelihood" min="1" max="5" value="3" step="1" />
+            <span class="slider-value" id="sliderLikelihoodVal">3</span>
+          </div>
+        </div>
+        <div class="slider-group">
+          <label for="sliderControl">Control Effectiveness</label>
+          <div class="slider-row">
+            <input type="range" id="sliderControl" min="0" max="100" value="50" step="1" />
+            <span class="slider-value" id="sliderControlVal">50%</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="modal-section-heading">Interactive Risk Matrix</h3>
+      <p class="chart-description">The grid highlights your inherent position (red) and residual position (blue) in real time.</p>
+
+      <div class="calc-matrix-wrap">
+        <span class="calc-matrix-y">Likelihood</span>
+        <div class="calc-matrix" id="calcMatrix">
+          <div class="calc-cell" data-l="5" data-i="1"></div><div class="calc-cell" data-l="5" data-i="2"></div><div class="calc-cell" data-l="5" data-i="3"></div><div class="calc-cell" data-l="5" data-i="4"></div><div class="calc-cell" data-l="5" data-i="5"></div>
+          <div class="calc-cell" data-l="4" data-i="1"></div><div class="calc-cell" data-l="4" data-i="2"></div><div class="calc-cell" data-l="4" data-i="3"></div><div class="calc-cell" data-l="4" data-i="4"></div><div class="calc-cell" data-l="4" data-i="5"></div>
+          <div class="calc-cell" data-l="3" data-i="1"></div><div class="calc-cell" data-l="3" data-i="2"></div><div class="calc-cell" data-l="3" data-i="3"></div><div class="calc-cell" data-l="3" data-i="4"></div><div class="calc-cell" data-l="3" data-i="5"></div>
+          <div class="calc-cell" data-l="2" data-i="1"></div><div class="calc-cell" data-l="2" data-i="2"></div><div class="calc-cell" data-l="2" data-i="3"></div><div class="calc-cell" data-l="2" data-i="4"></div><div class="calc-cell" data-l="2" data-i="5"></div>
+          <div class="calc-cell" data-l="1" data-i="1"></div><div class="calc-cell" data-l="1" data-i="2"></div><div class="calc-cell" data-l="1" data-i="3"></div><div class="calc-cell" data-l="1" data-i="4"></div><div class="calc-cell" data-l="1" data-i="5"></div>
+        </div>
+        <span class="calc-matrix-x">Impact</span>
+      </div>
+
+      <div class="score-readout" id="scoreReadout">
+        <div class="readout-item readout-inherent">
+          <span class="readout-label">Inherent Risk:</span>
+          <span class="readout-score" id="inherentScoreText">9</span>
+          <span class="readout-tier" id="inherentTierText">Medium</span>
+        </div>
+        <div class="readout-item readout-residual">
+          <span class="readout-label">Residual Risk:</span>
+          <span class="readout-score" id="residualScoreText">4.5</span>
+          <span class="readout-tier" id="residualTierText">Low</span>
+        </div>
+      </div>
+
+      <div class="risk-canvas-wrapper">
+        <canvas id="riskCalcChart" width="600" height="280"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+
+  <section id="features" class="section features-section">
+    <div class="container">
+      <h2 class="section-title">Interactive Features Preview</h2>
+      <div class="features-placeholder">
+        <p class="features-label">🔬 Coming Soon</p>
+        <p>Future charts, forms, and mini-apps will appear here.</p>
+        <p class="features-note">This space is reserved for interactive JavaScript experiments — live calculators, data visualizations, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p>Have a question or want to follow the learning journey? Reach out!</p>
+      <div class="contact-links">
+        <a href="mailto:you@example.com" class="btn btn-primary">📧 Email Me</a>
+        <a href="https://github.com/jeffryanfl" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>Web Products Hub · April 2026 · Building in Public</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
