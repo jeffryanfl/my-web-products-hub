@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const projectCards  = document.querySelectorAll('.project-card');
   const rockvilleCard = document.getElementById('rockvilleCard');
   const riskCard      = document.getElementById('riskCard');
-  const saaspocalypsisCard = document.getElementById('saaspocalypsisCard');
+  const saaspocalypseCard = document.getElementById('saaspocalypseCard');
 
-  var modalCards = [rockvilleCard, riskCard, saaspocalypsisCard];
+  var modalCards = [rockvilleCard, riskCard, saaspocalypseCard];
 
   projectCards.forEach(function (card) {
     if (modalCards.indexOf(card) !== -1) return;
